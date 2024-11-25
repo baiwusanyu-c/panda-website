@@ -15,7 +15,7 @@ export interface PandaNavProps {
 
 export default async function PandaNav(props: PandaNavProps) {
   return (
-    <div className='h-[85px] w-[78vw] shadow rounded-full fcc pf left-0 top-[15px] mx-auto my-0'>
+    <div className='h-[85px] w-[78vw] shadow shadow-cbd-white bg-cbd-white rounded-full fcc pf left-0 right-0 top-[15px] mx-auto my-0'>
       {/* logo */}
      <div className="h-full w-auto fcc">
        {(props.list || []).map((url) => (

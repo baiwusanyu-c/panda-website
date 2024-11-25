@@ -23,7 +23,7 @@ export default async function RootLayout({
   const list:{ data: LinkItem[] } = await getData()
   return (
     <html lang="ch" style={{fontSize: '11px'}}>
-      <body className={`${oppoSans.variable} w-full overflow-x-hidden h-auto`}  style={{fontFamily: 'var(--oppp-sans)'}}>
+      <body className={`${oppoSans.variable} w-full overflow-x-hidden h-auto bg-cbd-gray-2`}  style={{fontFamily: 'var(--oppp-sans)'}}>
       <AntdRegistry>
         <ConfigProvider theme={theme} componentSize="middle">
           <PandaNav list={list.data}></PandaNav>
