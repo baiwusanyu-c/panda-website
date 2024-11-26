@@ -1,10 +1,14 @@
 'use client'
-import {ReactNode, useEffect, useRef} from 'react'
+import {ReactNode, useMemo, useRef} from 'react'
+import { motion, AnimatePresence } from "motion/react"
 import { useState } from 'react'
 import type { LinkItem } from "@/components/nav/index";
 import Link from "next/link";
+import './style.css'
+import {usePathname} from "next/navigation";
 export interface NavItemProps {
   children: ReactNode;
+  url: string
   links?: LinkItem[]
 }
 export function NavItem(props: NavItemProps) {
@@ -40,28 +44,43 @@ export function NavItem(props: NavItemProps) {
   function handleSubMouseEnter(){
     setShow((props.links || []).length > 0);
   }
+  const pathname = usePathname()
+  const isActiveCls = useMemo(() => {
+    return props.url === pathname ? 'pr link-item--active' : 'link-item pr'
+  },[pathname, props.links])
   return (
     <>
-      <div onMouseEnter={handleMouseEnter}
-           onMouseLeave={handleMouseLeave}>
+      <div
+          className={isActiveCls}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}>
         {props.children}
       </div>
-      {
-        show ? <div
-          ref={linkRef}
-          onMouseLeave={handleMouseLeave}
-          onMouseEnter={handleSubMouseEnter}
-          className="pf bg-cbd-brand-5 h-[55px] rounded-bl-full rounded-br-full max-w-max py-0 px-[55px] fcc" style={pos}>
-          {(props.links || []).map((url) => (
-            <Link
-              className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
-              key={url.value}
-              href={url.value}>
-              {url.label}
-            </Link>
-          ))}
-          </div> : <></>
-      }
+      <AnimatePresence>
+        {
+          show ?
+              <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  key={show ? 'fade-in-link' : "fade-out-link"}
+                  transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
+                  ref={linkRef}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseEnter={handleSubMouseEnter}
+                  className="pf bg-cbd-brand-5 h-[55px] rounded-bl-full rounded-br-full max-w-max py-0 px-[55px] fcc" style={pos}>
+                {(props.links || []).map((url) => (
+                    <Link
+                        className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
+                        key={url.value}
+                        href={url.value}>
+                      {url.label}
+                    </Link>
+                ))}
+              </motion.div> : <></>
+        }
+      </AnimatePresence>
+
     </>
   )
 }

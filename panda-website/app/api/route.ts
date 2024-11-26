@@ -7,7 +7,7 @@ export interface BasicInfo {
   locale: string
   links: LinkItem[]
 }
-export async function POST(request: Request) {
+export async function POST() {
   const data = {
     links: [
       {

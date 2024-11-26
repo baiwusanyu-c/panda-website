@@ -1,7 +1,9 @@
+'use client'
 import Link from 'next/link'
 import Image from "next/image";
 import { PhoneFilled, GlobalOutlined } from '@ant-design/icons'
 import { NavItem } from "@/components/nav/NavItem";
+import { motion } from "motion/react"
 export interface LinkItem {
   label: string
   value: string
@@ -14,15 +16,17 @@ export interface PandaNavProps {
   tel: string
 }
 
-// TODO: 404 不显示
-// TODO: 下拉
-// TODO: 动画
 // TODO: 更多
 // TODO: i18n
 
-export default async function PandaNav(props: PandaNavProps) {
+export default function PandaNav(props: PandaNavProps) {
   return (
-    <div className='h-[85px] w-[78vw] shadow shadow-cbd-white bg-cbd-white rounded-full fbc pf left-0 right-0 top-[15px] mx-auto my-0 pl-[10px]'>
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        key='fade-in-nav-header'
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className='h-[85px] w-[78vw] shadow shadow-cbd-white bg-cbd-white rounded-full fbc pf left-0 right-0 top-[15px] mx-auto my-0 pl-[10px]'>
       {/* logo */}
       <div className="h-full w-auto fcc mx-[20px]">
         <Image
@@ -35,7 +39,7 @@ export default async function PandaNav(props: PandaNavProps) {
       </div>
      <div className="h-full w-auto fcc">
        {(props.list || []).map((url) => (
-         <NavItem links={url.children} key={url.value}>
+         <NavItem links={url.children} key={url.value} url={url.value}>
            <Link
              className='h-full block text-[16px] text-cbd-brand-5 hover:font-bold w-auto overflow-hidden transition-all duration-[0.4s] py-0 px-[18px] leading-[85px]'
              key={url.value}
@@ -66,6 +70,6 @@ export default async function PandaNav(props: PandaNavProps) {
           <span className='text-cbd-white text-[16px] ml-[6px]'> {props.locale}</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
