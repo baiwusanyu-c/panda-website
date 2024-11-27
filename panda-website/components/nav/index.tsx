@@ -4,6 +4,8 @@ import Image from "next/image";
 import { PhoneFilled, GlobalOutlined } from '@ant-design/icons'
 import { NavItem } from "@/components/nav/NavItem";
 import { motion } from "motion/react"
+import {useEffect, useRef, useState} from "react";
+
 export interface LinkItem {
   label: string
   value: string
@@ -16,19 +18,99 @@ export interface PandaNavProps {
   tel: string
 }
 
-// TODO: 更多
+// TODO: "更多的交互"
 // TODO: i18n
 
 export default function PandaNav(props: PandaNavProps) {
+  const { list, headerTitle, tel, locale } = props;
+  const [linkList, setLinkList] = useState<LinkItem[]>(list);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleResize = (init = false) => {
+    const browserWidth = window.innerWidth;
+    const isSmaller = browserWidth <= width;
+    setWidth(browserWidth);
+    const updatedLinks = JSON.parse(JSON.stringify(props.list));
+    const curLinks = JSON.parse(JSON.stringify(linkList));
+    const curLength = curLinks.length;
+
+    const addMoreMenu = (count: number) => {
+      const removedLinks = updatedLinks.splice(updatedLinks.length - count, count);
+      updatedLinks.push({
+        label: "更多",
+        value: "/more-page",
+        children: removedLinks,
+      });
+    };
+
+    if(init) {
+      if (browserWidth <= 1500 && browserWidth > 1420) {
+        addMoreMenu(2);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth <= 1420 && browserWidth > 1280) {
+        addMoreMenu(3);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth <= 1280 && browserWidth > 1100) {
+        addMoreMenu(4);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth <= 1100 && browserWidth > 960) {
+        addMoreMenu(5);
+        setLinkList([...updatedLinks]);
+      }
+      return
+    }
+    if (isSmaller) {
+      if (browserWidth <= 1500 && browserWidth > 1420 && curLength === 8) {
+        addMoreMenu(2);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth <= 1420 && browserWidth > 1280 && curLength === 7) {
+        addMoreMenu(3);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth <= 1280 && browserWidth > 1100 && curLength === 6) {
+        addMoreMenu(4);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth <= 1100 && browserWidth > 960 && curLength === 5) {
+        addMoreMenu(5);
+        setLinkList([...updatedLinks]);
+      }
+    } else {
+      if (browserWidth < 1500 && browserWidth >= 1420 && curLength === 6) {
+        addMoreMenu(2);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth < 1420 && browserWidth >= 1280 && curLength === 5) {
+        addMoreMenu(3);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth < 1280 && browserWidth >= 1100 && curLength === 4) {
+        addMoreMenu(4);
+        setLinkList([...updatedLinks]);
+      } else if (browserWidth >= 1500 ) {
+        setLinkList([...updatedLinks]);
+      }
+    }
+  };
+
+  useEffect(() => {
+    // 监听窗口大小变化
+    const resizeListener = () => handleResize();
+    window.addEventListener("resize", resizeListener);
+
+    return () => {
+      window.removeEventListener("resize", resizeListener);
+    };
+  }, [linkList, width]);
+
+  useEffect(() => {
+    handleResize(true)
+  }, [])
   return (
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         key='fade-in-nav-header'
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className='h-[85px] w-[78vw] shadow shadow-cbd-white bg-cbd-white rounded-full fbc pf left-0 right-0 top-[15px] mx-auto my-0 pl-[10px]'>
+        className='h-[85px] max-w-[1500px] min-w-[960px] shadow shadow-cbd-white bg-cbd-white rounded-full fbc pf left-0 right-0 top-[15px] my-0 mx-auto pl-[10px]'>
       {/* logo */}
-      <div className="h-full w-auto fcc mx-[20px]">
+      <div className="h-full fcc mx-[20px] w-[300px]">
         <Image
           src="/logo.png"
           alt="panda tea logo"
@@ -38,10 +120,10 @@ export default function PandaNav(props: PandaNavProps) {
         />
       </div>
      <div className="h-full w-auto fcc">
-       {(props.list || []).map((url) => (
+       {(linkList || []).map((url) => (
          <NavItem links={url.children} key={url.value} url={url.value}>
            <Link
-             className='h-full block text-[16px] text-cbd-brand-5 hover:font-bold w-auto overflow-hidden transition-all duration-[0.4s] py-0 px-[18px] leading-[85px]'
+             className='w-auto h-full block text-[16px] text-cbd-brand-5 hover:font-bold overflow-hidden transition-all duration-[0.4s] py-0 px-[18px] leading-[85px]'
              key={url.value}
              href={url.value}>
              {url.label}
@@ -50,7 +132,7 @@ export default function PandaNav(props: PandaNavProps) {
        ))}
      </div>
       {/* i18n */}
-      <div className="h-full w-auto fcc bg-cbd-brand-5 rounded-tr-full rounded-br-full"
+      <div className="h-full w-[280px] fcc bg-cbd-brand-5 rounded-tr-full rounded-br-full"
            style={{fontFamily: 'var(--oppp-sans)'}}>
         <div className='bg-cbd-white rounded-full fcc h-[30px] w-[30px] ml-[16px]'>
           <PhoneFilled
@@ -59,15 +141,15 @@ export default function PandaNav(props: PandaNavProps) {
             className='!text-cbd-brand-5'/>
         </div>
         <ul className="text-cbd-white text-[16px] mx-[10px]">
-          {props.headerTitle}
+          {headerTitle}
           <br/>
-          <span className='text-cbd-white text-[19px] font-bold'> {props.tel}</span>
+          <span className='text-cbd-white text-[19px] font-bold'> {tel}</span>
         </ul>
         <div className='fcc h-[30px] mr-[16px]'>
           <GlobalOutlined
             style={{fontSize: '20px'}}
             className='!text-cbd-white'/>
-          <span className='text-cbd-white text-[16px] ml-[6px]'> {props.locale}</span>
+          <span className='text-cbd-white text-[16px] ml-[6px]'> {locale}</span>
         </div>
       </div>
     </motion.div>
