@@ -123,6 +123,11 @@ export default function PandaNav(props: PandaNavProps) {
        {(linkList || []).map((url) => (
          <NavItem links={url.children} key={url.value} url={url.value}>
            <Link
+             onClick={(e) => {
+               if(url.value === '/more-page') {
+                 e.preventDefault();
+               }
+             }}
              className='w-auto h-full block text-[16px] text-cbd-brand-5 hover:font-bold overflow-hidden transition-all duration-[0.4s] py-0 px-[18px] leading-[85px]'
              key={url.value}
              href={url.value}>
