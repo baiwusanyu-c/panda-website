@@ -6,6 +6,9 @@ import type { LinkItem } from "@/components/nav/index";
 import Link from "next/link";
 import './style.css'
 import {usePathname} from "next/navigation";
+import { Tooltip } from "@nextui-org/tooltip";
+
+
 export interface NavItemProps {
   children: ReactNode;
   url: string
@@ -48,6 +51,7 @@ export function NavItem(props: NavItemProps) {
   const isActiveCls = useMemo(() => {
     return props.url === pathname ? 'pr link-item--active' : 'link-item pr'
   },[pathname, props.links])
+
   return (
     <>
       <div
@@ -69,14 +73,44 @@ export function NavItem(props: NavItemProps) {
                   onMouseLeave={handleMouseLeave}
                   onMouseEnter={handleSubMouseEnter}
                   className="pf bg-cbd-brand-5 h-[55px] rounded-bl-full rounded-br-full max-w-max py-0 px-[55px] fcc" style={pos}>
-                {(props.links || []).map((url) => (
-                    <Link
-                        className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
-                        key={url.value}
-                        href={url.value}>
+                {(props.links || []).map((url) => {
+                  return (
+                    (!url.children || url.children.length === 0) ?
+                     <Link
+                      className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
+                      key={url.value}
+                      href={url.value}>
                       {url.label}
-                    </Link>
-                ))}
+                    </Link> :
+                      <Tooltip
+                        offset={20}
+                        placement='bottom'
+                        content={
+                          <div
+                            className='bg-cbd-brand-5 rounded-[8px]'
+                            aria-label="navigate dropdown">
+                            {
+                              url.children.map(v => {
+                                return  <Link
+                                  key={v.value}
+                                  className='block p-[10px] box-border w-full text-[16px] text-cbd-white hover:text-cbd-yellow-2'
+                                  href={v.value}>
+                                  {v.label}
+                                </Link>
+                              })
+                            }
+                          </div>
+                        }
+                        key={url.value}>
+                        <Link
+                          className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
+                          key={url.value}
+                          href={url.value}>
+                          {url.label}
+                        </Link>
+                      </Tooltip>
+                  )
+                })}
               </motion.div> : <></>
         }
       </AnimatePresence>

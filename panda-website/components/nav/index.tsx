@@ -4,7 +4,7 @@ import Image from "next/image";
 import { PhoneFilled, GlobalOutlined } from '@ant-design/icons'
 import { NavItem } from "@/components/nav/NavItem";
 import { motion } from "motion/react"
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
 export interface LinkItem {
   label: string
@@ -24,10 +24,10 @@ export interface PandaNavProps {
 export default function PandaNav(props: PandaNavProps) {
   const { list, headerTitle, tel, locale } = props;
   const [linkList, setLinkList] = useState<LinkItem[]>(list);
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(globalThis.innerWidth);
 
   const handleResize = (init = false) => {
-    const browserWidth = window.innerWidth;
+    const browserWidth = globalThis.innerWidth;
     const isSmaller = browserWidth <= width;
     setWidth(browserWidth);
     const updatedLinks = JSON.parse(JSON.stringify(props.list));
@@ -92,10 +92,10 @@ export default function PandaNav(props: PandaNavProps) {
   useEffect(() => {
     // 监听窗口大小变化
     const resizeListener = () => handleResize();
-    window.addEventListener("resize", resizeListener);
+    globalThis.addEventListener("resize", resizeListener);
 
     return () => {
-      window.removeEventListener("resize", resizeListener);
+      globalThis.removeEventListener("resize", resizeListener);
     };
   }, [linkList, width]);
 

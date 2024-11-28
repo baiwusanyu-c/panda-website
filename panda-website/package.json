@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
-    "@ant-design/nextjs-registry": "^1.0.1",
     "@chapanda/style-preset": "^1.4.3",
-    "antd": "^5.21.5",
+    "@nextui-org/dropdown": "^2.1.31",
+    "@nextui-org/tooltip": "^2.0.41",
     "motion": "12.0.0-alpha.2",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
