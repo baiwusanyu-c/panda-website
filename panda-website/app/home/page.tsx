@@ -1,7 +1,7 @@
-// TODO: 接口返回
+
 export default function HomePage() {
   return (
-    <div className="">
+    <div className='h-[100vh] w-full'>
       HomePage
     </div>
   );

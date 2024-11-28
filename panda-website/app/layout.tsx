@@ -20,7 +20,7 @@ export default async function RootLayout({
   const res: { data: BasicInfo } = await getData()
   return (
     <html lang="ch" style={{fontSize: '11px'}}>
-      <body className={`${oppoSans.variable} w-full overflow-x-hidden h-auto bg-cbd-gray-2`}  style={{fontFamily: 'var(--oppp-sans)'}}>
+      <body className={`${oppoSans.variable} h-[100vh] w-full overflow-x-hidden bg-cbd-gray-2`}  style={{fontFamily: 'var(--oppp-sans)'}}>
       <PandaNav
         headerTitle={res.data.headerTitle}
         locale={res.data.locale}
