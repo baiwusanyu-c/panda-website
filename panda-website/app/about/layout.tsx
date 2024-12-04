@@ -1,5 +1,6 @@
 import { PandaFooter } from "@/components/footer";
-import {Wave} from "@/components/wave";
+import { TopBlock } from "@/components/top-block";
+import { Wave } from "@/components/wave";
 
 // TODO: 获取 Footer 数据
 export default async function RootLayout({
@@ -9,6 +10,7 @@ children,
 }>) {
   return (
     <div className='w-full h-full overflow-y-auto pf left-0 top-0 z-[1]'>
+      <TopBlock/>
       {children}
       <PandaFooter>
         <Wave/>

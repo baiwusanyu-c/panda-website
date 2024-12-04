@@ -18,7 +18,6 @@ export interface PandaNavProps {
   tel: string
 }
 
-// TODO: "更多的交互"
 // TODO: i18n
 
 export default function PandaNav(props: PandaNavProps) {
@@ -108,7 +107,7 @@ export default function PandaNav(props: PandaNavProps) {
         animate={{ y: 0, opacity: 1 }}
         key='fade-in-nav-header'
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className='h-[85px] max-w-[1500px] min-w-[960px] shadow shadow-cbd-white bg-cbd-white rounded-full fbc pf left-0 right-0 top-[15px] my-0 mx-auto pl-[10px]'>
+        className='h-[85px] max-w-[1500px] min-w-[960px] shadow shadow-cbd-white bg-cbd-white rounded-full fbc pf left-0 right-0 top-[15px] my-0 mx-auto pl-[10px] z-[6]'>
       {/* logo */}
       <div className="h-full fcc mx-[20px] w-[300px]">
         <Image
