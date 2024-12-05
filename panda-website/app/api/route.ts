@@ -6,6 +6,23 @@ export interface BasicInfo {
   headerTitle: string
   locale: string
   links: LinkItem[]
+  footerInfo: {
+    name: string
+    beian: {
+      no: string
+      url: string
+    },
+    addr: string
+    visits: string
+    website: string
+    franchiseHotline: string
+    customerServiceHotline: string
+    support: {
+      name: string
+      url: string
+    },
+
+  }
 }
 export async function POST() {
   const data = {
@@ -104,6 +121,23 @@ export async function POST() {
     tel: '4000-515-000',
     headerTitle: '茬白稻唯一加盟电话',
     locale: 'CN',
+    footerInfo: {
+      name: '四川蜀蜀蜀蜀企业管理咨询有限公司',
+      beian: {
+        no: '蜀ICP备20210114514号',
+        url: 'https://beian.miit.gov.cn/#/Integrated/index'
+      },
+      addr: '成都市武侯区名都路777号嘉尔金融科技中心',
+      visits: '114514',
+      website: 'www.pandaTea.com',
+      franchiseHotline: '4000-515-3258',
+      customerServiceHotline: '4000-287-7401',
+      support: {
+        name: '爱坤科技',
+        url: 'https://github.com/baiwusanyu-c'
+      },
+
+    }
   }
   return NextResponse.json({ data })
 }

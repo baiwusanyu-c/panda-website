@@ -7,28 +7,29 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update:deps": "npx taze major -w && pnpm run init"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^5.5.2",
     "@chapanda/style-preset": "^1.4.3",
     "@nextui-org/dropdown": "^2.1.31",
     "@nextui-org/tooltip": "^2.0.41",
-    "motion": "12.0.0-alpha.2",
-    "next": "15.0.3",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "motion": "^12.0.0-alpha.2",
+    "next": "^15.0.3",
+    "react": "^19.0.0-rc-de68d2f4-20241204",
+    "react-dom": "^19.0.0-rc-de68d2f4-20241204"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.17.9",
+    "@types/react": "^18.3.13",
+    "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8",
+    "eslint": "^9.16.0",
     "eslint-config-next": "15.0.3",
-    "postcss": "^8",
+    "postcss": "^8.4.49",
     "postcss-px-to-viewport": "^1.1.1",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2"
   }
 }
