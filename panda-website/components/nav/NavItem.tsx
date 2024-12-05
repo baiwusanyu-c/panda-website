@@ -5,7 +5,7 @@ import { useState } from 'react'
 import type { LinkItem } from "@/components/nav/index";
 import Link from "next/link";
 import './style.css'
-import {usePathname} from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Tooltip } from "@nextui-org/tooltip";
 
 
