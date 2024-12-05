@@ -64,15 +64,15 @@ export function NavItem(props: NavItemProps) {
         {
           show ?
               <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, borderBottomRightRadius: '4px',  borderBottomLeftRadius: '4px'}}
+                  animate={{ opacity: 1, borderBottomRightRadius: '100px',  borderBottomLeftRadius: '100px' }}
+                  exit={{ opacity: 0, borderBottomRightRadius: '4px',  borderBottomLeftRadius: '4px'}}
                   key={show ? 'fade-in-link' : "fade-out-link"}
                   transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
                   ref={linkRef}
                   onMouseLeave={handleMouseLeave}
                   onMouseEnter={handleSubMouseEnter}
-                  className="pf bg-cbd-brand-5 h-[55px] rounded-bl-full rounded-br-full max-w-max py-0 px-[55px] fcc" style={pos}>
+                  className="pf bg-cbd-brand-5 h-[55px]  max-w-max py-0 px-[55px] fcc" style={pos}>
                 {(props.links || []).map((url) => {
                   return (
                     (!url.children || url.children.length === 0) ?
