@@ -16,16 +16,16 @@
     "@nextui-org/dropdown": "^2.1.31",
     "@nextui-org/tooltip": "^2.0.41",
     "motion": "^12.0.0-alpha.2",
-    "next": "^15.0.3",
-    "react": "^19.0.0-rc-de68d2f4-20241204",
-    "react-dom": "^19.0.0-rc-de68d2f4-20241204",
-    "swiper": "^10.0.0"
+    "next": "^15.0.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "swiper": "^11.1.15"
   },
   "devDependencies": {
     "@types/node": "^20.17.9",
-    "@types/react": "^18.3.13",
+    "@types/react": "^18.3.14",
+    "@types/react-dom": "^18.3.2",
     "@types/swiper": "latest",
-    "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.16.0",
     "eslint-config-next": "15.0.3",
