@@ -4,7 +4,8 @@ import Image from "next/image";
 import { PhoneFilled, GlobalOutlined } from '@ant-design/icons'
 import { NavItem } from "@/components/nav/NavItem";
 import { motion } from "motion/react"
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
+import {usePathname} from "next/navigation";
 
 export interface LinkItem {
   label: string
@@ -101,6 +102,19 @@ export default function PandaNav(props: PandaNavProps) {
   useEffect(() => {
     handleResize(true)
   }, [])
+
+  const pathname = usePathname()
+  const isActiveCls = useMemo(() => {
+    return (url: string) =>  {
+      const basic = 'w-auto h-full block text-[16px] text-cbd-brand-5 hover:font-bold overflow-hidden transition-all duration-[0.4s] py-0 px-[18px] leading-[85px]'
+      if(url === pathname) {
+        return `${basic} !font-bold`;
+      }
+      return basic
+    }
+  },[pathname])
+
+
   return (
       <motion.div
         initial={{ y: 100, opacity: 0 }}
@@ -127,7 +141,7 @@ export default function PandaNav(props: PandaNavProps) {
                  e.preventDefault();
                }
              }}
-             className='w-auto h-full block text-[16px] text-cbd-brand-5 hover:font-bold overflow-hidden transition-all duration-[0.4s] py-0 px-[18px] leading-[85px]'
+             className={isActiveCls(url.value)}
              key={url.value}
              href={url.value}>
              {url.label}
