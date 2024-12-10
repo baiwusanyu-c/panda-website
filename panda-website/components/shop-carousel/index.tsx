@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -7,58 +7,62 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-
 import './style.css';
-
-// import required modules
-import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 export default function App() {
+  function handleResize(){
+    let targetWidth = 1920;
+    const dom = document.querySelector('#shop_carousel')
+    let currentWidth =
+      document.documentElement.clientWidth || document.body.clientWidth;
+    let scaleRatio = currentWidth / targetWidth;
+    if(dom){
+      (dom as HTMLDivElement).style.transform = `scale(${scaleRatio})`;
+    }
+  }
+  useEffect(() => {
+    handleResize()
+    globalThis.addEventListener('resize', handleResize);
+    return () => {
+      globalThis.removeEventListener('resize', handleResize);
+    }
+  }, []);
   return (
-    <div className="pr h-full w-[98vw]">
+    <div className="pr h-full w-[1903px]" id="shop_carousel">
       <Swiper
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
-        spaceBetween={30}
+        spaceBetween={40}
         loop={true}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
         slidesPerView={'auto'}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
         pagination={{
-          bulletActiveClass: '!bg-cbd-brand-5',
-          horizontalClass: 'swiper-pagination-horizontal',
+          bulletActiveClass: '!bg-cbd-brand-5 !opacity-100 border-[6px] border-solid border-cbd-brand-3 !w-[20px] !h-[20px]',
+          horizontalClass: 'fcc',
           clickable: true
         }}
-        modules={[Autoplay, EffectCoverflow, Pagination]}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          scale: 0.7,
+          depth: 1,
+          modifier: 1,
+          slideShadows: false,
+        }}
+        modules={[EffectCoverflow, Pagination]}
       >
-        <SwiperSlide  className='w-[925px]'>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg"  className='w-[925px] h-[618px]'/>
-        </SwiperSlide>
-        <SwiperSlide className='w-[925px]'>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg"  className='w-[925px] h-[618px]'/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg"   className='w-[925px] h-[618px]'/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg"  className='w-[925px] h-[618px]'/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg"  className='w-[925px] h-[618px]'/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg"  className='w-[925px] h-[618px]'/>
-        </SwiperSlide>
+        {
+          [1, 2, 3, 4, 5, 6, 7].map(value => {
+            return (
+              <SwiperSlide key={`panda tea shop ${value}`}>
+                <img src={`/shop/shop${value}.webp`}
+                     className='rounded-[12px] w-[951px] h-[570px]'
+                     alt={`panda tea shop${value}.`} />
+              </SwiperSlide>
+            )
+          })
+        }
       </Swiper>
     </div>
   );
