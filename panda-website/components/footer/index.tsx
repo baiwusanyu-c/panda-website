@@ -3,20 +3,7 @@ import type {BasicInfo} from "@/app/api/route";
 import Link from "next/link";
 // 添加动画后，无法在浏览器开发工具 preview，但是 response 里是有 dom 的
 import { motion } from "motion/react"
-const footerVariants = {
-  offscreen: {
-    y: 30,
-    opacity: 0,
-  },
-  onscreen: {
-    y: 0,
-    opacity: 1,
-  }
-};
-const footerTransition = {
-  type: "easeIn",
-  duration: 1,
-};
+import { genVariant } from "@/utils";
 // TODO:i18n
 export function PandaFooter({
 data,
@@ -35,24 +22,12 @@ children,
         viewport={{ once: true, amount: 0.8 }}
       >
         <motion.div
-          variants={{
-            ...footerVariants,
-            onscreen: {
-              ...footerVariants.onscreen,
-              transition: {...footerTransition, delay: 0,}
-            }
-          }}
+          variants={genVariant(0)}
           className='text-cbd-brand-8 text-[16px] text-center leading-[23px] mt-[10px]'>
           版权所有：{data.footerInfo.name}
         </motion.div>
         <motion.div
-          variants={{
-            ...footerVariants,
-            onscreen: {
-              ...footerVariants.onscreen,
-              transition: {...footerTransition, delay: 0.3,}
-            }
-          }}
+          variants={genVariant(0.3)}
           className='text-cbd-brand-8 text-[16px] text-center leading-[23px] mt-[10px] fbc'>
           <Link href={data.footerInfo.beian.url}
                         target='_blank'>
@@ -62,13 +37,7 @@ children,
           <span>网站总访问量：{data.footerInfo.visits}</span>
         </motion.div>
         <motion.div
-          variants={{
-            ...footerVariants,
-            onscreen: {
-              ...footerVariants.onscreen,
-              transition: {...footerTransition, delay: 0.6,}
-            }
-          }}
+          variants={genVariant(0.6)}
           className='text-cbd-white text-[16px] text-center leading-[23px] mt-[10px]'>
           <span>茬白稻唯一官网：{data.footerInfo.website}</span>
           <span className='mx-[10px]'> 加盟热线：{data.footerInfo.franchiseHotline}</span>
