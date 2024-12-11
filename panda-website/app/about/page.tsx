@@ -9,6 +9,6 @@ export default async function AboutPage() {
   }
   const aboutRes: { data: AboutInfo } = await getAboutData()
   return (
-   <AboutView info={aboutRes.data.honor}/>
+   <AboutView info={aboutRes.data.honor} intro={aboutRes.data.intro} />
   );
 }
