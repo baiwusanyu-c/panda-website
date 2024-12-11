@@ -56,7 +56,14 @@ export default function AboutView(props: { info: string[], intro: string}) {
               {intro}
             </motion.p>
           </div>
-          <div></div>
+          <div className='pr w-[40%]'>
+            <div className='pa w-[35%] h-[35%]'></div>
+            <div className='pa w-[25%] h-[25%]'></div>
+            <div className='pa w-[20%] h-[20%]'></div>
+            <div className='pa w-[17%] h-[17%]'></div>
+            <div className='pa w-[5%] h-[5%]'></div>
+            <div className='pa w-[3%] h-[3%]'></div>
+          </div>
         </div>
       </motion.div>
 
