@@ -4,6 +4,7 @@ import { Wave } from "@/components/wave";
 import { motion } from "motion/react"
 import { genVariant } from "@/utils";
 import Image from "next/image";
+import { PandaTeaIntroduction } from "@/components/introduction";
 // TODO: 走马灯卡顿
 export default function AboutView(props: { info: string[], intro: string}) {
   const { info, intro } = props
@@ -26,52 +27,12 @@ export default function AboutView(props: { info: string[], intro: string}) {
         </motion.div>
         <ShopCarousel/>
       </motion.div>
-
-      <motion.div
-        className='overflow-hidden w-full flex-col pr left-0 top-0 my-[80px]'
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{once: true, amount: 0.2}}>
-        <div className='mx-auto my-0 max-w-[1500px] min-w-[1200px] w-[94%] fbc'>
-          <div className='w-[60%] overflow-hidden'>
-            <motion.div
-              variants={genVariant(0)}
-              className='text-[44px] text-cbd-brand-5 font-bold leading-[1]'>
-              Brand
-            </motion.div>
-            <motion.div
-              variants={genVariant(0.3)}
-              className='text-[44px] text-cbd-brand-5 font-bold leading-[1]'>
-              Introduction
-            </motion.div>
-            <motion.div
-              variants={genVariant(0.4)}
-              className='text-[32px] text-cbd-gray-6 leading-[2]'>
-              品牌介绍
-            </motion.div>
-            <motion.p
-              variants={genVariant(0.5)}
-              style={{textIndent: '2em'}}
-              className='text-[16px] text-left leading-[2] my-[10px]'>
-              {intro}
-            </motion.p>
-          </div>
-          <div className='pr w-[40%]'>
-            <div className='pa w-[35%] h-[35%]'></div>
-            <div className='pa w-[25%] h-[25%]'></div>
-            <div className='pa w-[20%] h-[20%]'></div>
-            <div className='pa w-[17%] h-[17%]'></div>
-            <div className='pa w-[5%] h-[5%]'></div>
-            <div className='pa w-[3%] h-[3%]'></div>
-          </div>
-        </div>
-      </motion.div>
-
+      <PandaTeaIntroduction intro={intro} />
       <motion.div
         className='overflow-hidden w-full flex-col pr left-0 top-0'
         initial="offscreen"
         whileInView="onscreen"
-        viewport={{once: true, amount: 0.2}}>
+        viewport={{once: true, amount: 0.4}}>
         <div className='mx-auto mb-[60px] max-w-[1500px] min-w-[1200px] w-[94%]'>
           <motion.div
             variants={genVariant(0)}
@@ -79,7 +40,7 @@ export default function AboutView(props: { info: string[], intro: string}) {
             Honor Chapter
           </motion.div>
           <motion.div
-            variants={genVariant(0.3)}
+            variants={genVariant(0.5)}
               className='text-[32px] text-cbd-gray-6'>
               荣誉篇章
             </motion.div>
@@ -102,7 +63,7 @@ export default function AboutView(props: { info: string[], intro: string}) {
                 {
                   info.map((item, index) => {
                     return <motion.div
-                      variants={genVariant(0.3 * (index + 1.1))}
+                      variants={genVariant(0.5 * (index + 1.1))}
                       key={item}
                       className='text-[22px] text-cbd-white leading-[60px] border-0 border-b-1 border-solid border-cbd-brand-10'>
                       {item}
@@ -110,7 +71,7 @@ export default function AboutView(props: { info: string[], intro: string}) {
                   })
                 }
                 <motion.div
-                  variants={genVariant(0.3 * ((info.length + 1) * 1.1))}
+                  variants={genVariant(0.5 * ((info.length + 1) * 1.1))}
                   className='text-[22px] text-cbd-white leading-[60px] border-0 border-b-1 border-solid border-cbd-brand-10'>
                   ...
                 </motion.div>
