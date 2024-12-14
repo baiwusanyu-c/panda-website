@@ -2,7 +2,7 @@
 import {motion} from "motion/react";
 import {genVariant} from "@/utils";
 import {Wave} from "@/components/wave";
-import Image from "next/image";
+import {ProductCarousel} from "@/components/product-carousel";
 
 export default function ProductPage() {
   return (
@@ -12,7 +12,7 @@ export default function ProductPage() {
             initial="offscreen"
             whileInView="onscreen"
             viewport={{once: true, amount: 0.4}}>
-          <div className='mx-auto mb-[60px] max-w-[1500px] min-w-[1200px] w-[94%] mt-[200px]'>
+          <div className='mx-auto mb-[180px] max-w-[1500px] min-w-[1200px] w-[94%] mt-[200px]'>
             <motion.div
                 variants={genVariant(0)}
                 className='text-[44px] text-cbd-brand-5  leading-[1] font-bold'>
@@ -32,13 +32,7 @@ export default function ProductPage() {
             </div>
             <div className='bg-cbd-brand-5 h-[580px]'>
               <div className='fcc pr left-0 -top-[320px]'>
-                <Image
-                    src="/honor.webp"
-                    alt="panda tea honor"
-                    width={1250}
-                    height={560}
-                    priority
-                />
+                <ProductCarousel/>
               </div>
               <div className=' my-0 w-full pr left-0 -top-[320px]'>
                 <div className='w-[46%] bg-[#2545cb] pt-[46%] rounded-full left-0 top-[100px] pa'></div>
