@@ -97,10 +97,12 @@ export default function PandaNav(props: PandaNavProps) {
     return () => {
       globalThis.removeEventListener("resize", resizeListener);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [linkList, width]);
 
   useEffect(() => {
     handleResize(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const pathname = usePathname()

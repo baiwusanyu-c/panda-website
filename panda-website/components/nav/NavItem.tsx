@@ -50,7 +50,7 @@ export function NavItem(props: NavItemProps) {
   const pathname = usePathname()
   const isActiveCls = useMemo(() => {
     return props.url === pathname ? 'pr link-item--active' : 'link-item pr'
-  },[pathname, props.links])
+  },[pathname, props.url])
 
   return (
     <>

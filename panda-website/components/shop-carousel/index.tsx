@@ -1,6 +1,7 @@
 'use client'
 import React, {useEffect } from 'react';
 // Import Swiper React components
+import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -56,7 +57,9 @@ export default function App() {
           [1, 2, 3, 4, 5, 6, 7].map(value => {
             return (
               <SwiperSlide key={`panda tea shop ${value}`}>
-                <img src={`/shop/shop${value}.webp`}
+                <Image src={`/shop/shop${value}.webp`}
+                       width={951}
+                       height={570}
                      className='rounded-[12px] w-[951px] h-[570px]'
                      alt={`panda tea shop${value}.`} />
               </SwiperSlide>
