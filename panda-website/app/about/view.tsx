@@ -9,7 +9,7 @@ import { PandaTeaIntroduction } from "@/components/introduction";
 export default function AboutView(props: { info: string[], intro: string}) {
   const { info, intro } = props
   return (
-    <div className="chanpanda-about overflow-x-hidden bg-cbd-white w-full">
+    <div className="panda-tea-about overflow-x-hidden bg-cbd-white w-full">
       <motion.div
         id='1'
         initial="offscreen"
@@ -35,7 +35,7 @@ export default function AboutView(props: { info: string[], intro: string}) {
         initial="offscreen"
         whileInView="onscreen"
         viewport={{once: true, amount: 0.4}}>
-        <div className='mx-auto mb-[60px] max-w-[1500px] min-w-[1200px] w-[94%]' id='1'>
+        <div className='mx-auto mb-[60px] max-w-[1500px] min-w-[1200px] w-[94%]'>
           <motion.div
             variants={genVariant(0)}
             className='text-[44px] text-cbd-brand-5 leading-[1.5] font-bold'>
