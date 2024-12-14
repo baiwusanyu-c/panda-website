@@ -1,8 +1,6 @@
 import { PandaFooter } from "@/components/footer";
 import { TopBlock } from "@/components/top-block";
 import type {BasicInfo} from "@/app/api/route";
-import { AboutInfo } from "@/app/about/api/route";
-import { cloneElement } from 'react'
 
 // TODO: 获取 Footer 数据
 export default async function RootLayout({
