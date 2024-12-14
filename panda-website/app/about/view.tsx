@@ -11,6 +11,7 @@ export default function AboutView(props: { info: string[], intro: string}) {
   return (
     <div className="chanpanda-about overflow-x-hidden bg-cbd-white w-full">
       <motion.div
+        id='1'
         initial="offscreen"
         whileInView="onscreen"
         viewport={{once: true, amount: 0.2}}
@@ -27,13 +28,14 @@ export default function AboutView(props: { info: string[], intro: string}) {
         </motion.div>
         <ShopCarousel/>
       </motion.div>
-      <PandaTeaIntroduction intro={intro} />
+      <PandaTeaIntroduction intro={intro} id='2'/>
       <motion.div
+          id='3'
         className='overflow-hidden w-full flex-col pr left-0 top-0'
         initial="offscreen"
         whileInView="onscreen"
         viewport={{once: true, amount: 0.4}}>
-        <div className='mx-auto mb-[60px] max-w-[1500px] min-w-[1200px] w-[94%]'>
+        <div className='mx-auto mb-[60px] max-w-[1500px] min-w-[1200px] w-[94%]' id='1'>
           <motion.div
             variants={genVariant(0)}
             className='text-[44px] text-cbd-brand-5 leading-[1.5] font-bold'>

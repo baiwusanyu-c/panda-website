@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { genVariant } from "@/utils";
-
+import './style.css'
 const INTRODUCTION_ANIMATE = {
   scale: [1, 1, 1, 1, 1],
   rotate: [0, 10, 0, -10, 0],
@@ -10,8 +10,9 @@ const INTRODUCTION_TRANSITION = {
   ease: "linear",
   repeat: Infinity,
 }
-export function PandaTeaIntroduction(props: { intro: string }) {
+export function PandaTeaIntroduction(props: { intro: string, id: string }) {
   return <motion.div
+      id={props.id}
     className='overflow-hidden w-full flex-col pr left-0 top-0 my-[80px]'
     initial="offscreen"
     whileInView="onscreen"
@@ -41,13 +42,16 @@ export function PandaTeaIntroduction(props: { intro: string }) {
         </motion.p>
       </div>
       <motion.div className='pr w-[40%] h-[268px]'>
-        <motion.div className='left-[33%] bottom-0 pa pt-[35%] w-[35%] bg-[#ebf2f8] rounded-[100%]'
+        <motion.div className='left-[33%] bottom-0 pa pt-[35%] w-[35%] bg-[#ebf2f8] rounded-[100%] bg-no-repeat '
+          style={{backgroundImage: `url(/t8.webp)`, backgroundPositionX: 'center', backgroundPositionY: '30%'}}
           animate={INTRODUCTION_ANIMATE}
           transition={INTRODUCTION_TRANSITION}
         >
           <span
             style={{fontFamily: 'var(--oppp-sans)'}}
-            className='w-full h-auto overflow-hidden pa left-0 top-[60%] text-center text-[18px] text-cbd-gray-6 font-[500]'>茶百道2008年创立</span>
+            className='w-full h-auto overflow-hidden pa left-0 top-[60%] text-center text-[18px] text-cbd-gray-6 font-[500]'>
+            茬白稻2008年创立
+          </span>
         </motion.div>
         <motion.div
           animate={INTRODUCTION_ANIMATE}
@@ -74,29 +78,9 @@ export function PandaTeaIntroduction(props: { intro: string }) {
             className='w-full h-auto overflow-hidden pa left-0 top-[40%] text-center text-[18px] text-cbd-gray-6 font-[500]'>原生茶香</span>
         </motion.div>
         <motion.div
-          animate={{
-            rotate: ['1turn'],
-          }}
-          style={{
-            'transformOrigin': '55% 30%'
-          }}
-          transition={{
-            ...INTRODUCTION_TRANSITION,
-            duration: 6,
-          }}
-          className='left-[25%] top-[40%] pa pt-[5%] w-[5%] bg-[#ebf2f8] rounded-[100%]'></motion.div>
+          className='bubble left-[25%] top-[40%] pa pt-[5%] w-[5%] bg-[#ebf2f8] rounded-[100%]'></motion.div>
         <motion.div
-          style={{
-            'transformOrigin': '55% 30%'
-          }}
-          animate={{
-            rotate: ['1turn'],
-          }}
-          transition={{
-            ...INTRODUCTION_TRANSITION,
-            duration: 6,
-          }}
-          className='right-[2%] top-[55%] pa pt-[3%] w-[3%] bg-cbd-yellow-2 rounded-[100%]'></motion.div>
+          className='bubble right-[2%] top-[55%] pa pt-[3%] w-[3%] bg-cbd-yellow-2 rounded-[100%]'></motion.div>
       </motion.div>
     </div>
   </motion.div>
