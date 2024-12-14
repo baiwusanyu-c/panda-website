@@ -1,0 +1,9 @@
+.bubble {
+    animation: yuan 6s infinite linear;
+    transform-origin: 55% 30%;
+}
+@keyframes yuan {
+    100% {
+        transform: rotate(1turn);
+    }
+}
