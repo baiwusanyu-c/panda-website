@@ -14,3 +14,7 @@
     background: url(../../public/t37.png) no-repeat center top;
     background-size: 100% 15px;
 }
+
+.chapanda-tea-nav{
+    box-shadow: 0 0 15px #f3f3f3;
+}
