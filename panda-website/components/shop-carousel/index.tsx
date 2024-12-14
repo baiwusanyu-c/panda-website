@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -12,11 +12,11 @@ import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 export default function App() {
   function handleResize(){
-    let targetWidth = 1920;
+    const targetWidth = 1920;
     const dom = document.querySelector('#shop_carousel')
-    let currentWidth =
+    const currentWidth =
       document.documentElement.clientWidth || document.body.clientWidth;
-    let scaleRatio = currentWidth / targetWidth;
+    const scaleRatio = currentWidth / targetWidth;
     if(dom){
       (dom as HTMLDivElement).style.transform = `scale(${scaleRatio})`;
     }
