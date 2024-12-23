@@ -1,19 +1,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
-// TODO 动画
-const DEFAULT_ARR = [1, 2, 3, 4, 5, 6, 7]
-// TODO 接口数据获取
-const DEFAULT_PRODUCT_ARR = [
-    '茉莉奶绿',
-    '杨枝甘露',
-    '西瓜啵啵',
-    '超级杯水果茶',
-    '招牌芋圆奶茶',
-    '芒芒生打椰',
-    '青提茉莉',
-]
-export function ProductCarousel(){
+import { motion, AnimatePresence } from "motion/react"
+export function ProductCarousel(props:{ list: string[]}){
+    const DEFAULT_ARR = [1, 2, 3, 4, 5, 6, 7]
     const [list, setList] = useState(DEFAULT_ARR);
     const [active, setActive] = useState(4);
     const handleNext = () => {
@@ -31,30 +21,11 @@ export function ProductCarousel(){
         setList(result);
     }, [active]);
 
-    const activeCls = (index: number) => {
-        const cls = 'fcc w-[100px]  h-[100px] rounded-full pr left-0 top-0';
-        if((index + 1) === 4){
-            return `${cls} mx-[60px]`
-        }
-        return `${cls} bg-cbd-white mx-[40px]`
+    const isActive = (index: number) => {
+        return (index + 1) === 4
     }
 
-    const activeImgContainerCls = (index: number) => {
-        const cls = ''
-        if((index + 1) === 4){
-            return `${cls} pa h-[600px] w-[342px] -left-[110px] bottom-[100px]`
-        }
-        return cls
-    }
-
-    const activeImgSizeCls = (index: number) => {
-        if((index + 1) === 4){
-            return 600
-        }
-        return 38
-    }
-
-    return <div className="w-full h-[500px] pr left-0 top-0 flex justify-center items-end flex-row">
+    return <div className="w-full h-[500px] pr left-0 top-0 flex justify-center items-end flex-row select-none">
         <div className='fcc h-[100px] w-[100px]'>
             <div
                 onClick={handlePrev}
@@ -66,30 +37,51 @@ export function ProductCarousel(){
             </div>
         </div>
         <div className='fcc flex-row'>
-            {
-                list.map((item, index) => {
-                    return <div key={`${item}-product`} className={activeCls(index)}>
-                        <div className={activeImgContainerCls(index)}>
-                            <Image
+            <AnimatePresence initial={true}>
+                { list.map((item, index) => {
+                    return isActive(index) ?
+                      <div  className='fcc w-[100px]  h-[100px] rounded-full pr left-0 top-0 mx-[100px] ' key={`${item}-product`}>
+                          <motion.div
+                            key={`product-active`}
+                            initial={{scale: 0 , boxShadow: '0 0 0 300px rgba(255,255,255,1)', backgroundColor: 'white'}}
+                            animate={{scale: 1, boxShadow: '0 0 30px 300px rgba(255,255,255,0)', backgroundColor: 'transparent'}}
+                            exit={{scale: 0, boxShadow: '0 0 0 300px rgba(255,255,255,1)', backgroundColor: 'white'}}
+                            transition={{
+                                duration: 0.2,
+                                ease: "easeInOut",
+                               boxShadow: { duration: 0.2 },
+                               backgroundColor: { duration: 0.2 },
+                            }}
+                            className='pa h-[600px] w-[342px] -left-[110px] bottom-[100px] '>
+                              <Image
                                 src={`/product/product${item}.webp`}
                                 alt={`panda tea product ${item}`}
-                                width={activeImgSizeCls(index)}
-                                height={activeImgSizeCls(index)}
+                                width={600}
+                                height={600}
                                 priority
-                            />
-                            { (index + 1) === 4 ? <p className='text-[28px] text-cbd-white font-bold text-center w-full'>
-                                {DEFAULT_PRODUCT_ARR[item - 1]}
-                            </p> :<></>}
-                        </div>
-                    </div>
-                })
-            }
+                              />
+                              {isActive(index) ? <p className='text-[28px] text-cbd-white font-bold text-center w-full'>
+                                  {props.list[item - 1]}
+                              </p> : <></>}
+                          </motion.div>
+                      </div> :
+                      <div className=' fcc w-[100px]  h-[100px] rounded-full pr left-0 top-0 bg-cbd-white mx-[40px]'  key={`${item}-product`}>
+                          <Image
+                            src={`/product/product${item}.webp`}
+                            alt={`panda tea product ${item}`}
+                            width={38}
+                            height={38}
+                            priority
+                          />
+                      </div>
+                })}
+            </AnimatePresence>
         </div>
         <div className='fcc h-[100px] w-[100px]'>
             <div
-                onClick={handleNext}
-                role='button'
-                className='h-[60px] w-[60px]
+              onClick={handleNext}
+              role='button'
+              className='h-[60px] w-[60px]
                 bg-[#2545cb]
                 hover:bg-cbd-yellow-2 cursor-pointer rounded-full fcc'>
                 <ArrowRightOutlined className='hover:text-[#2545cb] text-cbd-brand-4 text-[20px]'/>

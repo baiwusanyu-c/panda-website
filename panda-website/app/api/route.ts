@@ -6,6 +6,7 @@ export interface BasicInfo {
   headerTitle: string
   locale: string
   links: LinkItem[]
+  products: string[]
   footerInfo: {
     name: string
     beian: {
@@ -121,6 +122,15 @@ export async function POST() {
     tel: '4000-515-000',
     headerTitle: '茬白稻唯一加盟电话',
     locale: 'CN',
+    products: [
+      '茉莉奶绿',
+      '杨枝甘露',
+      '西瓜啵啵',
+      '超级杯水果茶',
+      '招牌芋圆奶茶',
+      '芒芒生打椰',
+      '青提茉莉',
+    ],
     footerInfo: {
       name: '四川蜀蜀蜀蜀企业管理咨询有限公司',
       beian: {
