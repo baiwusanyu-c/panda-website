@@ -24,7 +24,7 @@ export default function NewsView(props: NewsViewProps) {
                     className='text-[32px] text-cbd-gray-6'>
                     新闻动态
                 </motion.div>
-                <div className="grid grid-cols-3 gap-4 max-w-[1500px] min-w-[1200px] overflow-hidden pb-[80px] my-0 mx-auto">
+                <div className="grid grid-cols-3 gap-10 max-w-[1500px] min-w-[1200px] overflow-hidden pb-[80px] mt-[60px] mx-auto">
                     {
                         props.news.map((info) => {
                             return <motion.div
