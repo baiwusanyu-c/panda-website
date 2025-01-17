@@ -15,6 +15,7 @@
     "@chapanda/style-preset": "^1.4.6",
     "@nextui-org/dropdown": "^2.3.7",
     "@nextui-org/tooltip": "^2.2.5",
+    "ahooks": "^3.8.4",
     "motion": "^12.0.0-alpha.2",
     "next": "^15.1.2",
     "react": "^19.0.0",
