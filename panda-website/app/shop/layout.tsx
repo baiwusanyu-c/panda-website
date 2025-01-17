@@ -15,7 +15,7 @@ children,
   }
   const res: { data: BasicInfo } = await getData()
   return (
-    <div className='w-full h-full overflow-y-auto pf left-0 top-0 z-[1]'>
+    <div className='w-full h-full overflow-y-auto pf left-0 top-0 z-[1] bg-cbd-white' id='panda_tea_shops_layout'>
       <TopBlock/>
       {children}
       <PandaFooter data={res.data}>
