@@ -1,3 +1,5 @@
+@reference "../../app/globals.css";
+
 .link-item--active::after,
 .link-item:hover::after{
     @apply left-0 -bottom-[15px] pa opacity-100 z-[2] transition-all duration-700 w-full h-[15px];
