@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { genVariant } from "@/utils";
 import type { ShopsInfo, ShopsInfoParams } from "@/app/shop/api/route";
 import {useDebounceFn, useMount, useUnmount} from 'ahooks'
-import { useState} from "react";
+import { useState } from "react";
 
 export default function NewsView() {
     const [list, setList] = useState<ShopsInfo['shops']>([]);
@@ -169,7 +169,7 @@ export default function NewsView() {
               <div
                 className="grid grid-cols-4 max-w-[1500px] min-w-[1200px] overflow-hidden pb-[20px] mt-[60px] mx-auto w-full">
                   {
-                      list.map((info, index) => {
+                      list.map((info) => {
                           return <motion.div
                             key={info.id}
                             initial="offscreen"

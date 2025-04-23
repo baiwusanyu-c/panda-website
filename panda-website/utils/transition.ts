@@ -22,3 +22,17 @@ export const genVariant = (delay: number) => {
     }
   }
 }
+
+export const genVariantX = (delay: number, offset: number) => {
+  return {
+    offscreen: {
+      x: offset,
+      opacity: 0,
+    },
+    onscreen: {
+      x: 0,
+      opacity: 1,
+      transition: {...PANDA_WEBSITE_TRANSITION_Y, delay,}
+    }
+  }
+}
