@@ -1,8 +1,7 @@
 /** @type {import('postcss-load-config').Config} */
 const config = {
   plugins: {
-    autoprefixer: {}, // 添加 autoprefixer 支持
-    tailwindcss: {},
+    "@tailwindcss/postcss": {},
     // 'postcss-px-to-viewport': { // 示例插件，按需添加
     //   viewportWidth: 1080,
     //   viewportUnit: 'rem',

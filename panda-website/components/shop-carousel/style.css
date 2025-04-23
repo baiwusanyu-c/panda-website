@@ -1,3 +1,4 @@
+@reference "../../app/globals.css";
 .swiper {
     @apply w-full py-[50px];
 }
