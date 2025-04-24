@@ -86,31 +86,27 @@ export async function POST() {
       },
       {
         label: '投资者关系',
-        value: '/investor',
+        value: '/investor/ir-home',
         children: [
           {
             label: '投关首页',
-            value: '/investor#1',
+            value: '/investor/ir-home',
           },
           {
             label: '招股文件',
-            value: '/investor#2',
+            value: '/investor/listing-docs',
           },
           {
             label: '业绩报告',
-            value: '/investor#3',
+            value: '/investor/financial-reports',
           },
           {
             label: '公告及通函',
-            value: '/investor#4',
+            value: '/investor/announcements-notices',
           },
           {
             label: '企业管治',
-            value: '/investor#5',
-          },
-          {
-            label: '投资者关系联络',
-            value: '/investor#6',
+            value: '/investor/corporate-governance',
           },
         ]
       },

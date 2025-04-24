@@ -3,6 +3,13 @@ import { TopBlock } from "@/components/top-block";
 import { Wave } from "@/components/wave";
 import type {BasicInfo} from "@/app/api/route";
 
+// TODO: 投关首页 ir-home
+// TODO: 招股文件 Listing Documents
+// TODO: 业绩报告 Financial Reports
+// TODO: 公告及通函 Announcements & Notices
+// TODO: 企业管治 Corporate Governance
+
+
 // TODO: 获取 Footer 数据
 export default async function RootLayout({
 children,

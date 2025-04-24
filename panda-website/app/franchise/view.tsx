@@ -3,6 +3,7 @@ import type { FranchiseInfo}  from "@/app/franchise/api/route";
 import {motion} from "motion/react";
 import {genVariant, genVariantX} from "@/utils";
 import Image from "next/image";
+import {NormalCard} from "@/components/normal-card";
 
 export interface FranchiseProps{
     info: FranchiseInfo;
@@ -91,11 +92,10 @@ export default function FranchiseView(props: FranchiseProps){
                                 key={it.title}
                                 variants={genVariant(0.6 * (index * 0.3))}
                                 className={`${index === 4 ? '' : 'fsc'}`}>
-                                <div
-                                    className='w-full h-[164px] bg-cbd-gray-2 px-[20px] py-[28px] rounded-tr-[20px] rounded-bl-[20px]'>
-                                    <p className='pf-regular-22 mb-[12px]'>{it.title}</p>
-                                    <p className='pf-regular-16 leading-[23px] text-cbd-gray-6'>{it.description}</p>
-                                </div>
+                                <NormalCard>
+                                  <p className='pf-regular-22 mb-[12px]'>{it.title}</p>
+                                  <p className='pf-regular-16 leading-[23px] text-cbd-gray-6'>{it.description}</p>
+                                </NormalCard>
                                 <div className='pr'>
                                     {
                                         index < 4 ?

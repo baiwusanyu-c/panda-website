@@ -1,8 +1,8 @@
 // TODO: 接口返回
-export default function InvestorPage() {
+export default function IRHomePage() {
   return (
     <div className="">
-      InvestorPage
+      IRHomePage
     </div>
   );
 }
