@@ -1,0 +1,4 @@
+@reference "../../../app/globals.css";
+.pdf:hover .pdf-icon{
+    @apply stroke-cbd-white
+}

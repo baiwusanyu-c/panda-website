@@ -2,4 +2,12 @@
     background-image: url("../../public/top-block.webp");
     background-repeat: no-repeat;
     background-size: cover;
+    height: 792px;
+}
+
+.top-block-s {
+    background-image: url("../../public/ban1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 792px;
 }

@@ -23,7 +23,7 @@ children,
   const res: { data: BasicInfo } = await getData()
   return (
     <div className='w-full h-full overflow-y-auto pf left-0 top-0 z-[1]'>
-      <TopBlock/>
+      <TopBlock type={2}/>
       {children}
       <PandaFooter data={res.data}>
         <Wave/>

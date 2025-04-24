@@ -19,6 +19,7 @@ export function ProductCarousel(props:{ list: string[]}){
         // 使用切片操作，将数组从给定数字位置重新排列
         const result = [...DEFAULT_ARR.slice(index - 3), ...DEFAULT_ARR.slice(0, index - 3)];
         setList(result);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [active]);
 
     const isActive = (index: number) => {

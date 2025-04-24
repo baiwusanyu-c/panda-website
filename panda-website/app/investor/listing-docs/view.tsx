@@ -12,7 +12,7 @@ export default function ListingDocsView(props: { link: string}) {
         whileInView="onscreen"
         id='1'
         viewport={{once: true, amount: 0.2}}
-        className='overflow-hidden w-full fcc flex-col pt-[80px]'>
+        className='overflow-hidden w-full fcc flex-col pt-[40px]'>
         <motion.div
           variants={genVariant(0)}
           className='text-[32px] text-cbd-gray-6 fcc flex-col'>
