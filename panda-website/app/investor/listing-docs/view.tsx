@@ -16,7 +16,7 @@ export default function ListingDocsView(props: { link: string}) {
         <motion.div
           variants={genVariant(0)}
           className='text-[32px] text-cbd-gray-6 fcc flex-col'>
-          加盟优势
+          招股文件
           <p className='w-[80px] h-[6px] rounded-2xl bg-cbd-brand-5 mt-[20px]'></p>
         </motion.div>
         <motion.a
@@ -27,7 +27,7 @@ export default function ListingDocsView(props: { link: string}) {
           <Image
             src={`/investor/listing-docs.webp`}
             alt="listing docs"
-            className='mb-[12px]'
+            className='mb-[12px] rounded-tr-[60px] rounded-bl-[60px]'
             width={340}
             height={453}
             priority
