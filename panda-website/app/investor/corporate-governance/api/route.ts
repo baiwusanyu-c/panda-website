@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 
 export interface CorporateGovernanceResInfo {
+  description: string;
   fileList: Array<{
-    link: string,
-    title: string,
+    link: string;
+    date?: string,
+    title: string
+    subTitle?: string
   }>,
   membersList: Array<{
     departmentName: string,
@@ -12,6 +15,7 @@ export interface CorporateGovernanceResInfo {
 }
 export async function POST() {
   const data = {
+    description: '我们为消费者，特别是注重茶饮品质的年轻一代，提供各种现制茶饮。我们对产品质量和产品开发的努力使茬白稻成为行业中的头部参与者，拥有广泛的消费群体。',
     fileList: [
       {
         link: "https://docs.github.com/",

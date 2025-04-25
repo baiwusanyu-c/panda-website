@@ -1,0 +1,14 @@
+.investor-left {
+    background-image: url("../../public/investor/pic1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 512px;
+}
+
+.investor-right {
+    background-image: url("../../public/investor/pic2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 512px;
+
+}

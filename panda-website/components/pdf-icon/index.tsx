@@ -1,6 +1,11 @@
 import React from 'react'
 
-export function PdfIcon(props: unknown) {
+interface PdfIconProps {
+  style?: Record<string, any>,
+  className?: string
+}
+
+export function PdfIcon(props: PdfIconProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" {...props}>
       <path fill="none" strokeLinecap="round" strokeLinejoin="round"

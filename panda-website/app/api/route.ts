@@ -86,11 +86,11 @@ export async function POST() {
       },
       {
         label: '投资者关系',
-        value: '/investor/ir-home',
+        value: '/investor',
         children: [
           {
             label: '投关首页',
-            value: '/investor/ir-home',
+            value: '/investor',
           },
           {
             label: '招股文件',

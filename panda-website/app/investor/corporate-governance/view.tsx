@@ -3,8 +3,7 @@
 import {motion} from "motion/react";
 import {genVariant} from "@/utils";
 import {CorporateGovernanceResInfo} from "@/app/investor/corporate-governance/api/route";
-import { PdfIcon } from "@/components/pdf-icon";
-import './style.css'
+import {PdfCard} from "@/components/pdf-card";
 export interface InvestorProps {
   data: CorporateGovernanceResInfo
 }
@@ -61,15 +60,7 @@ export default function CorporateGovernanceView(props: InvestorProps) {
         <div className="grid grid-cols-2 gap-[30px] max-w-[1500px] min-w-[1200px] overflow-hidden pb-[80px] mt-[20px] mx-auto w-[94%]">
           {
             data.fileList.map((info) => {
-              return <motion.a
-                key={info.title}
-                target='_blank'
-                href={info.link}
-                variants={genVariant(0.6)}
-                className='pdf fbc min-h-[100px] py-[15px] px-[30px] rounded-tr-[20px] rounded-bl-[20px] bg-cbd-gray-1 hover:bg-cbd-brand-5 hover:text-cbd-white leading-[40px]'>
-                <p className='px-[30px] text-[18px]'>{info.title}</p>
-                <PdfIcon style={{width: '40px', height: '40px'}} className='stroke-cbd-red-4 pdf-icon'/>
-              </motion.a>
+              return <PdfCard key={info.title} data={info} />
             })
           }
         </div>

@@ -109,7 +109,7 @@ export default function PandaNav(props: PandaNavProps) {
   const isActiveCls = useMemo(() => {
     return (url: string) =>  {
       const basic = 'w-auto h-full block text-[16px] text-cbd-brand-5 hover:font-bold overflow-hidden transition-all duration-[0.4s] py-0 px-[18px] leading-[85px]'
-      if(url === pathname) {
+      if(pathname.includes(url)) {
         return `${basic} !font-bold`;
       }
       return basic

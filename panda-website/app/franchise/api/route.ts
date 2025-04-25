@@ -23,7 +23,7 @@ export async function POST() {
         process: [
             {
                 title: '加盟申请',
-                description: '线上填写《茶百道-加盟申请表》，审核结果2个工作日',
+                description: '线上填写《茬白稻-加盟申请表》，审核结果2个工作日',
             },
             {
                 title: '资质审核',

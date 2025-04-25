@@ -9,6 +9,6 @@ export default async function ListingDocsPage() {
   }
   const ListingDocsRes: { data: ListingDocsInfo } = await getListingDocsData()
   return (
-    <ListingDocsView link={ListingDocsRes.data.link} />
+    <ListingDocsView links={ListingDocsRes.data} />
   );
 }
