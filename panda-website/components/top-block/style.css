@@ -1,13 +1,21 @@
-.top-block {
+.top-block-1 {
     background-image: url("../../public/top-block.webp");
     background-repeat: no-repeat;
     background-size: cover;
     height: 792px;
 }
 
-.top-block-s {
+.top-block-2 {
     background-image: url("../../public/ban1.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 792px;
 }
+
+.top-block-3 {
+    background-image: url("../../public/home/home-top.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 956px;
+}
+

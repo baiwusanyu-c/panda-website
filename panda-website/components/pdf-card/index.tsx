@@ -17,11 +17,10 @@ export interface PdfCardProps  {
 export function PdfCard(props: PdfCardProps){
   const { data } = props;
   const resolveDate = useMemo(() => {
-    if(props.data.date){
-      const date = dayjs(props.data.date)
+    if(data){
       return {
-        day: dayjs(props.data.date).format("DD"),
-        date: dayjs(props.data.date).format("YYYY-MM"),
+        day: dayjs(data.date).format("DD"),
+        date: dayjs(data.date).format("YYYY-MM"),
       }
     } else {
       return null

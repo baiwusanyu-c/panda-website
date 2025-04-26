@@ -1,0 +1,51 @@
+@reference "../../app/globals.css";
+.news-swiper-pagination-horizontal {
+    @apply fec
+}
+.news-bullet-active {
+    background-color: #0a4cde;
+    opacity: 1;
+}
+
+.news-bullet {
+   height: 10px;
+    width: 10px;
+}
+
+.home-investor {
+    background-image: url("../../public/shop/shop6.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 1000px;
+}
+
+.dot {
+    animation: ripple 3s linear infinite;
+}
+
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 6px rgba(4, 63, 221, 0.1)
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(4, 63, 221,0.1), 0 0 0 16px rgba(4, 63, 221,0.3)
+    }
+    80% {
+        box-shadow: 0 0 0 6px rgba(4, 63, 221,0.1), 0 0 0 16px rgba(4, 63, 221,0.1)
+    }
+    100% {
+        box-shadow: 0 0 0 12px rgba(4, 63, 221,0), 0 0 0 16px rgba(4, 63, 221,0)
+    }
+}
+
+
+.bubble {
+    animation: yuan 10s infinite linear;
+    transform-origin: 55% 45%;
+}
+@keyframes yuan {
+    100% {
+        transform: rotate(1turn);
+    }
+}

@@ -1,7 +1,7 @@
 import './style.css'
 
-export function Wave() {
-  return <div className='w-full h-[150px] overflow-hidden pr left-0 top-0'>
+export function Wave(props: {className?: string}) {
+  return <div className={`w-full h-[150px] overflow-hidden pr left-0 top-0 ${props.className || ''}`}>
     <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
          viewBox="0 -3.73517 24.47 3.735" preserveAspectRatio="none" shapeRendering="auto">
       <defs>

@@ -19,6 +19,10 @@ export function ProductCarousel(props:{ list: string[]}){
         // 使用切片操作，将数组从给定数字位置重新排列
         const result = [...DEFAULT_ARR.slice(index - 3), ...DEFAULT_ARR.slice(0, index - 3)];
         setList(result);
+        const timer = setInterval(() => {
+            handleNext()
+        }, 3000)
+        return () => { clearInterval(timer) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [active]);
 
@@ -34,7 +38,7 @@ export function ProductCarousel(props:{ list: string[]}){
                 className='h-[60px] w-[60px]
                 bg-[#2545cb]
                 hover:bg-cbd-yellow-2 cursor-pointer rounded-full fcc'>
-                <ArrowLeftOutlined className='hover:text-[#2545cb] text-cbd-brand-4 text-[20px]'/>
+                <ArrowLeftOutlined className='hover:text-[#2545cb] !text-cbd-brand-4 text-[20px]'/>
             </div>
         </div>
         <div className='fcc flex-row'>
@@ -85,7 +89,7 @@ export function ProductCarousel(props:{ list: string[]}){
               className='h-[60px] w-[60px]
                 bg-[#2545cb]
                 hover:bg-cbd-yellow-2 cursor-pointer rounded-full fcc'>
-                <ArrowRightOutlined className='hover:text-[#2545cb] text-cbd-brand-4 text-[20px]'/>
+                <ArrowRightOutlined className='hover:text-[#2545cb] !text-cbd-brand-4 text-[20px]'/>
             </div>
         </div>
     </div>
