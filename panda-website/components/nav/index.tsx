@@ -6,14 +6,10 @@ import { NavItem } from "@/components/nav/NavItem";
 import { motion } from "motion/react"
 import {useEffect, useMemo, useState} from "react";
 import {usePathname} from "next/navigation";
+import {MenuItem} from "@/app/api/route";
 
-export interface LinkItem {
-  label: string
-  value: string
-  children?: LinkItem[]
-}
 export interface PandaNavProps {
-  list: LinkItem[]
+  list: MenuItem[]
   locale: string
   headerTitle: string
   tel: string
@@ -23,7 +19,7 @@ export interface PandaNavProps {
 
 export default function PandaNav(props: PandaNavProps) {
   const { list, headerTitle, tel, locale } = props;
-  const [linkList, setLinkList] = useState<LinkItem[]>(list);
+  const [linkList, setLinkList] = useState<MenuItem[]>(list);
   const [width, setWidth] = useState(globalThis.innerWidth);
 
   const handleResize = (init = false) => {
@@ -136,17 +132,16 @@ export default function PandaNav(props: PandaNavProps) {
       </div>
      <div className="h-full w-auto fcc">
        {(linkList || []).map((url) => (
-         <NavItem links={url.children} key={url.value} url={url.value}>
+         <NavItem links={url.children} key={url.id} url={url.path}>
            <Link
              onClick={(e) => {
-               if(url.value === '/more-page') {
+               if(url.path === '/more-page') {
                  e.preventDefault();
                }
              }}
-             className={isActiveCls(url.value)}
-             key={url.value}
-             href={url.value}>
-             {url.label}
+             className={isActiveCls(url.path)}
+             href={url.path}>
+             {url.name}
            </Link>
          </NavItem>
        ))}

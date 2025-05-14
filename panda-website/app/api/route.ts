@@ -1,11 +1,20 @@
-import { NextResponse } from 'next/server';
-import { LinkItem } from "@/components/nav";
+import {NextResponse} from 'next/server';
+
+export interface MenuItem {
+  name: string;
+  nameEn: string;
+  icon?: string;
+  path: string;
+  parentId?: string;
+  children?: MenuItem[];
+  id: string;
+}
 
 export interface BasicInfo {
   tel: string
   headerTitle: string
   locale: string
-  links: LinkItem[]
+  links: MenuItem[]
   products: string[]
   footerInfo: {
     name: string
@@ -27,7 +36,7 @@ export interface BasicInfo {
 }
 export async function POST() {
   const data = {
-    links: [
+    links: [],/*[
       {
         label: '网站首页',
         value: '/home',
@@ -114,7 +123,7 @@ export async function POST() {
         label: '联系我们',
         value: '/contact',
       },
-    ],
+    ],*/
     tel: '4000-515-000',
     headerTitle: '茬白稻唯一加盟电话',
     locale: 'CN',
@@ -145,5 +154,9 @@ export async function POST() {
 
     }
   }
+
+  const res = await fetch('http://localhost:8084/menu/getTreeMenus', { method: 'post' });
+  data.links = (await res.json()).data
+
   return NextResponse.json({ data })
 }

@@ -2,17 +2,17 @@
 import {ReactNode, useMemo, useRef} from 'react'
 import { motion, AnimatePresence } from "motion/react"
 import { useState } from 'react'
-import type { LinkItem } from "@/components/nav/index";
 import Link from "next/link";
 import './style.css'
 import { usePathname } from "next/navigation";
 import { Tooltip } from "@nextui-org/tooltip";
+import { MenuItem } from "@/app/api/route";
 
 
 export interface NavItemProps {
   children: ReactNode;
   url: string
-  links?: LinkItem[]
+  links?: MenuItem[]
 }
 export function NavItem(props: NavItemProps) {
 
@@ -78,9 +78,9 @@ export function NavItem(props: NavItemProps) {
                     (!url.children || url.children.length === 0) ?
                      <Link
                       className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
-                      key={url.value}
-                      href={url.value}>
-                      {url.label}
+                      key={url.id}
+                      href={url.path}>
+                      {url.name}
                     </Link> :
                       <Tooltip
                         offset={20}
@@ -90,23 +90,22 @@ export function NavItem(props: NavItemProps) {
                             className='bg-cbd-brand-5 rounded-[8px]'
                             aria-label="navigate dropdown">
                             {
-                              url.children.map(v => {
+                              (url.children as MenuItem[]).map(v => {
                                 return  <Link
-                                  key={v.value}
+                                  key={v.id}
                                   className='block p-[10px] box-border w-full text-[16px] text-cbd-white hover:text-cbd-yellow-2'
-                                  href={v.value}>
-                                  {v.label}
+                                  href={v.path}>
+                                  {v.name}
                                 </Link>
                               })
                             }
                           </div>
                         }
-                        key={url.value}>
+                        key={url.id}>
                         <Link
                           className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
-                          key={url.value}
-                          href={url.value}>
-                          {url.label}
+                          href={url.path}>
+                          {url.name}
                         </Link>
                       </Tooltip>
                   )
