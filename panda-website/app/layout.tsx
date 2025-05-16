@@ -3,6 +3,7 @@ import "./globals.css";
 import PandaNav  from "@/components/nav";
 import type { BasicInfo } from "@/app/api/route";
 import { getLocale } from 'next-intl/server';
+import {NextIntlClientProvider} from 'next-intl';
 
 const oppoSans = localFont({
   src: "./fonts/fangzx.ttf",
@@ -23,13 +24,15 @@ export default async function RootLayout({
   return (
     <html lang={locale} style={{fontSize: '11px'}}>
       <body className={`${oppoSans.variable} h-[100vh] w-full overflow-x-hidden bg-cbd-gray-56`}  style={{fontFamily: 'var(--oppp-sans)'}}>
-      <PandaNav
-        headerTitle={res.data.headerTitle}
-        locale={res.data.locale}
-        tel={res.data.tel}
-        list={res.data.links}>
-      </PandaNav>
-      {children}
+      <NextIntlClientProvider>
+          <PandaNav
+              headerTitle={res.data.headerTitle}
+              locale={res.data.locale}
+              tel={res.data.tel}
+              list={res.data.links}>
+          </PandaNav>
+          {children}
+      </NextIntlClientProvider>
       </body>
     </html>
   );

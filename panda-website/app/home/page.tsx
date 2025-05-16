@@ -1,4 +1,3 @@
-/*
 import HomeView from "@/app/home/view";
 import {HomeInfo} from "@/app/home/api/route";
 
@@ -13,12 +12,4 @@ export default async function HomePage() {
     return (
         <HomeView data={homeRes.data} />
     );
-}
-*/
-
-import {useLocale, useTranslations} from 'next-intl';
-export default function HomePage() {
-    const t = useTranslations('HomePage');
-    const lang = useLocale();
-    return <h1>{t('title')} {lang}</h1>;
 }

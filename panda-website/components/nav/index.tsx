@@ -3,10 +3,12 @@ import Link from 'next/link'
 import Image from "next/image";
 import { PhoneFilled, GlobalOutlined } from '@ant-design/icons'
 import { NavItem } from "@/components/nav/NavItem";
-import { motion } from "motion/react"
-import {useEffect, useMemo, useState} from "react";
+import {startTransition, useEffect, useMemo, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
 import {MenuItem} from "@/app/api/route";
+import {useLocale} from "next-intl";
+import {Locale, setUserLocale} from "@/locale/locale-cookie";
+import { motion, AnimatePresence } from "motion/react"
 
 export interface PandaNavProps {
   list: MenuItem[]
@@ -18,7 +20,7 @@ export interface PandaNavProps {
 // TODO: i18n
 
 export default function PandaNav(props: PandaNavProps) {
-  const { list, headerTitle, tel, locale } = props;
+  const { list, headerTitle, tel } = props;
   const [linkList, setLinkList] = useState<MenuItem[]>(list);
   const [width, setWidth] = useState(globalThis.innerWidth);
 
@@ -33,8 +35,10 @@ export default function PandaNav(props: PandaNavProps) {
     const addMoreMenu = (count: number) => {
       const removedLinks = updatedLinks.splice(updatedLinks.length - count, count);
       updatedLinks.push({
-        label: "更多",
-        value: "/more-page",
+        id: 'more-page',
+        name: "更多",
+        nameEn: "more",
+        path: "/more-page",
         children: removedLinks,
       });
     };
@@ -112,7 +116,43 @@ export default function PandaNav(props: PandaNavProps) {
     }
   },[pathname])
 
+  const lang = useLocale();
+  const changeLocale = (v: Locale) => {
+    startTransition(() => {
+      setUserLocale(v);
+    });
+  }
 
+  const [showLocale, setShowLocale] = useState(false);
+  const  linkRef = useRef<HTMLDivElement | null>(null);
+  const [pos, setPos] = useState<{
+    left: string
+    top: string
+  }>();
+  function handleMouseEnter(e: React.MouseEvent<HTMLDivElement>) {
+    e.stopPropagation();
+    setShowLocale(true);
+    handleSubMouseEnter()
+    setTimeout(() => {
+      if(linkRef.current){
+        const rect = (e.target as HTMLDivElement).getBoundingClientRect();
+        const subLinkRect = (linkRef.current as HTMLDivElement).getBoundingClientRect();
+        setPos({
+          top: `${rect.top + 27 + rect.height}px`,
+          left: `${rect.left - subLinkRect.width}px`,
+        })
+      }
+    }, 100)
+  }
+
+
+  function handleMouseLeave(){
+    setShowLocale(false);
+  }
+
+  function handleSubMouseEnter(){
+    setShowLocale(true);
+  }
   return (
       <motion.div
         initial={{ y: 100, opacity: 0 }}
@@ -141,7 +181,7 @@ export default function PandaNav(props: PandaNavProps) {
              }}
              className={isActiveCls(url.path)}
              href={url.path}>
-             {url.name}
+             {lang === 'en' ? url.nameEn : url.name}
            </Link>
          </NavItem>
        ))}
@@ -160,12 +200,40 @@ export default function PandaNav(props: PandaNavProps) {
           <br/>
           <span className='text-cbd-white text-[19px] font-bold'> {tel}</span>
         </ul>
-        <div className='fcc h-[30px] mr-[16px]'>
+        <div className='fcc h-[30px] mr-[16px]'
+             onMouseEnter={handleMouseEnter}
+             onMouseLeave={handleMouseLeave}>
           <GlobalOutlined
             style={{fontSize: '20px'}}
             className='!text-cbd-white'/>
-          <span className='text-cbd-white text-[16px] ml-[6px]'> {locale}</span>
+          <span className='text-cbd-white text-[16px] ml-[6px]'> {lang === 'en' ? 'EN' : 'CN'}</span>
         </div>
+        <AnimatePresence>
+          {
+            showLocale ?
+                <motion.div
+                    initial={{ opacity: 0, borderBottomRightRadius: '4px',  borderBottomLeftRadius: '4px'}}
+                    animate={{ opacity: 1, borderBottomRightRadius: '100px',  borderBottomLeftRadius: '100px' }}
+                    exit={{ opacity: 0, borderBottomRightRadius: '4px',  borderBottomLeftRadius: '4px'}}
+                    key={showLocale ? 'fade-in-link' : "fade-out-link"}
+                    transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
+                    ref={linkRef}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseEnter={handleSubMouseEnter}
+                    className="pf bg-cbd-brand-5 h-[55px]  w-[280px] py-0 px-[55px] fcc" style={pos}
+                >
+                  <p
+                      onClick={() => changeLocale('en')}
+                      className=' cursor-pointer hover:text-cbd-yellow-2 mx-[20px] text-[16px] text-cbd-white'>
+                    EN
+                  </p>
+                  <p  onClick={() => changeLocale('zh')}
+                      className=' cursor-pointer hover:text-cbd-yellow-2 mx-[20px] text-[16px] text-cbd-white'>
+                    CN
+                  </p>
+                </motion.div> : <></>
+          }
+        </AnimatePresence>
       </div>
     </motion.div>
   );

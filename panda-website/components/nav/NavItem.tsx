@@ -1,5 +1,5 @@
 'use client'
-import {ReactNode, useMemo, useRef} from 'react'
+import {ReactNode, useMemo, useRef } from 'react'
 import { motion, AnimatePresence } from "motion/react"
 import { useState } from 'react'
 import Link from "next/link";
@@ -7,7 +7,7 @@ import './style.css'
 import { usePathname } from "next/navigation";
 import { Tooltip } from "@nextui-org/tooltip";
 import { MenuItem } from "@/app/api/route";
-
+import {useLocale} from "next-intl";
 
 export interface NavItemProps {
   children: ReactNode;
@@ -51,7 +51,7 @@ export function NavItem(props: NavItemProps) {
   const isActiveCls = useMemo(() => {
     return props.url === pathname ? 'pr link-item--active' : 'link-item pr'
   },[pathname, props.url])
-
+  const lang = useLocale();
   return (
     <>
       <div
@@ -80,7 +80,7 @@ export function NavItem(props: NavItemProps) {
                       className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
                       key={url.id}
                       href={url.path}>
-                      {url.name}
+                       {lang === 'en' ? url.nameEn : url.name}
                     </Link> :
                       <Tooltip
                         offset={20}
@@ -95,7 +95,7 @@ export function NavItem(props: NavItemProps) {
                                   key={v.id}
                                   className='block p-[10px] box-border w-full text-[16px] text-cbd-white hover:text-cbd-yellow-2'
                                   href={v.path}>
-                                  {v.name}
+                                  {lang === 'en' ? v.nameEn : v.name}
                                 </Link>
                               })
                             }
@@ -105,7 +105,7 @@ export function NavItem(props: NavItemProps) {
                         <Link
                           className='text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]'
                           href={url.path}>
-                          {url.name}
+                          {lang === 'en' ? url.nameEn : url.name}
                         </Link>
                       </Tooltip>
                   )
