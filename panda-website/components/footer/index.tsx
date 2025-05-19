@@ -1,5 +1,4 @@
 'use client'
-import type {BasicInfo} from "@/app/api/route";
 import Link from "next/link";
 // 添加动画后，无法在浏览器开发工具 preview，但是 response 里是有 dom 的
 import { motion } from "motion/react"
@@ -7,10 +6,8 @@ import { genVariant } from "@/utils";
 import {useTranslations} from "next-intl";
 
 export function PandaFooter({
-data,
 children,
 }:Readonly<{
-  data: BasicInfo
   children?:React.ReactNode;
 }>){
   const t = useTranslations('common');

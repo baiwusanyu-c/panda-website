@@ -10,17 +10,16 @@ import {useMemo} from "react";
 export default function ProductView() {
 
   const t = useTranslations('common');
-  const keys = [
-    'product1',
-    'product2',
-    'product3',
-    'product4',
-    'product5',
-    'product6',
-    'product7',
-  ]
   const list = useMemo(() => {
-    return keys.map(key => {
+    return [
+      'product1',
+      'product2',
+      'product3',
+      'product4',
+      'product5',
+      'product6',
+      'product7',
+    ].map(key => {
       return t(`products.${key}`)
     })
   }, [t])

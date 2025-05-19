@@ -36,17 +36,16 @@ export default function HomePage(props: HomePageProps) {
    } = props.data;
 
   const t = useTranslations('common');
-  const keys = [
-      'product1',
-      'product2',
-      'product3',
-      'product4',
-      'product5',
-      'product6',
-      'product7',
-  ]
   const products = useMemo(() => {
-      return keys.map(key => {
+      return [
+          'product1',
+          'product2',
+          'product3',
+          'product4',
+          'product5',
+          'product6',
+          'product7',
+      ].map(key => {
           return t(`products.${key}`)
       })
   }, [t])

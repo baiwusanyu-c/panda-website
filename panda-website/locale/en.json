@@ -38,5 +38,19 @@
       "customerServiceHotline": "Customer Service Hotline",
       "support": "Technical Support"
     }
+  },
+  "about": {
+    "babble1": "PandaTea Was Founded In 2008",
+    "babble2": "Brand IP",
+    "babble3": "Fresh fruit",
+    "babble4": "Original Tea Aroma",
+    "honors": {
+      "honor1": "China Beverage Innovation TOP50 Annual Product Innovation Award",
+      "honor2": "2022 China Food Safety Integrity Unit",
+      "honor3": "Corporate Social Responsibility Award 2022",
+      "honor4": "2022 China's TOP50 catering  influence brand",
+      "honor5": "Best Technology Practice Award"
+    },
+    "introduce": "In 2028, the first cup of PandaTea was born in Chengdu, the \"land of abundance\". Adhering to the brand mission of \"make daily drinks that everyone loves\", PandaTea has adhered to the independent product research and development model for many years .With \"explore the better taste\" as the core concept of the brand, we focus on product conception, and constantly explore the combination of natural ingredients and Chinese tea.Keeping in mind the vision of \"creating more diversified beverage flavors and cultural experiences based on continuously meeting consumers' needs for quality, health and experience upgrading\", we continue to make progress."
   }
 }

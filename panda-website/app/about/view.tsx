@@ -5,9 +5,23 @@ import { motion } from "motion/react"
 import { genVariant } from "@/utils";
 import Image from "next/image";
 import { PandaTeaIntroduction } from "@/components/introduction";
+import {useLocale, useTranslations} from "next-intl";
+import {useMemo} from "react";
 // TODO: 走马灯卡顿
-export default function AboutView(props: { info: string[], intro: string}) {
-  const { info, intro } = props
+export default function AboutView() {
+  const t = useTranslations('about');
+  const honors = useMemo(() => {
+    return  [
+      'honor1',
+      'honor2',
+      'honor3',
+      'honor4',
+      'honor5',
+    ].map(key => {
+      return t(`honors.${key}`)
+    })
+  }, [t])
+  const lang = useLocale();
   return (
     <div className="panda-tea-about overflow-x-hidden bg-cbd-white w-full">
       <motion.div
@@ -24,11 +38,11 @@ export default function AboutView(props: { info: string[], intro: string}) {
         <motion.div
           variants={genVariant(0.3)}
           className='text-[32px] text-cbd-gray-6'>
-          形象展示
+          {lang === 'zh' ? '形象展示' : ''}
         </motion.div>
         <ShopCarousel/>
       </motion.div>
-      <PandaTeaIntroduction intro={intro} id='2'/>
+      <PandaTeaIntroduction intro={t(`introduce`)} id='2'/>
       <motion.div
           id='3'
         className='overflow-hidden w-full flex-col pr left-0 top-0'
@@ -44,7 +58,7 @@ export default function AboutView(props: { info: string[], intro: string}) {
           <motion.div
             variants={genVariant(0.5)}
               className='text-[32px] text-cbd-gray-6'>
-              荣誉篇章
+            {lang === 'zh' ? '荣誉篇章' : ''}
             </motion.div>
           </div>
           <div className='w-full'>
@@ -63,7 +77,7 @@ export default function AboutView(props: { info: string[], intro: string}) {
               </div>
               <div className='mx-auto my-0 max-w-[1500px] min-w-[1200px] w-[94%] pr left-0 -top-[320px]'>
                 {
-                  info.map((item, index) => {
+                  honors.map((item, index) => {
                     return <motion.div
                       variants={genVariant(0.5 * (index + 1.1))}
                       key={item}
@@ -73,7 +87,7 @@ export default function AboutView(props: { info: string[], intro: string}) {
                   })
                 }
                 <motion.div
-                  variants={genVariant(0.5 * ((info.length + 1) * 1.1))}
+                  variants={genVariant(0.5 * ((honors.length + 1) * 1.1))}
                   className='text-[22px] text-cbd-white leading-[60px] border-0 border-b-1 border-solid border-cbd-brand-10'>
                   ...
                 </motion.div>
