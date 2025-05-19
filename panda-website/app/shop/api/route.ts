@@ -1,36 +1,56 @@
 import { NextResponse } from 'next/server';
+import {BASE_URL, genHeaders} from "@/utils";
 
-// TODO: 后端请求
-export interface ShopsInfoIer {
-    name: string;
+export interface ResShopListDto {
+    /**
+     * 列表
+     */
+    records: CreateShopDto[];
+    /**
+     * 总条数
+     */
+    total: string;
+}
+
+/**
+ * CreateShopDto
+ */
+export interface CreateShopDto {
     id: string;
+    /**
+     * 门店名称
+     */
+    name: string;
+    /**
+     * 门店英文名称
+     */
+    nameEn: string;
+    /**
+     * 区域名称
+     */
+    region: string;
+    /**
+     * 区域英文名称
+     */
+    regionEn: string;
 }
 
-export interface ShopsInfo {
-    shops: Array<ShopsInfoIer>
-    isAll: boolean
-}
 
 export interface ShopsInfoParams {
-    type?: 1 | 2 | 3 | 4 | 5 | 6;
-    pageSize: number;
-    pageNo: number;
+    regionEn?: 'Southwest' | 'North China' | 'Northeast' | 'Northwest' | 'Central-South' | 'East China';
+    pageSize: string;
+    pageNum: string;
 }
 
 export async function POST(request: Request) {
     // 处理 request payload 类型参数
     const payload = await request.text()
     const params = JSON.parse(payload) as ShopsInfoParams
-    const data = {
-        shops: [] as Array<ShopsInfoIer>,
-        isAll: params.pageNo === 5,
-    }
-    for (let i = (params.pageNo - 1) * params.pageSize; i < params.pageSize * params.pageNo; i++) {
-        data.shops.push({
-            name: `测试门店-${i}-${params.type || '全部'}`,
-            id: `测试门店-${i}-${params.type || '全部'}`,
-        })
-    }
-
+    const res = await fetch(`${BASE_URL}/shop/list`, {
+        method: 'post',
+        body: JSON.stringify(params),
+        headers: genHeaders()
+    });
+    const data = (await res.json()).data
     return NextResponse.json({ data })
 }

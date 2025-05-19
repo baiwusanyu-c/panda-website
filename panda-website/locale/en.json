@@ -52,5 +52,14 @@
       "honor5": "Best Technology Practice Award"
     },
     "introduce": "In 2028, the first cup of PandaTea was born in Chengdu, the \"land of abundance\". Adhering to the brand mission of \"make daily drinks that everyone loves\", PandaTea has adhered to the independent product research and development model for many years .With \"explore the better taste\" as the core concept of the brand, we focus on product conception, and constantly explore the combination of natural ingredients and Chinese tea.Keeping in mind the vision of \"creating more diversified beverage flavors and cultural experiences based on continuously meeting consumers' needs for quality, health and experience upgrading\", we continue to make progress."
+  },
+  "stores": {
+    "title": "PandaTea all stores distribution",
+    "Southwest": "Southwest stores distribution",
+    "North China": "North China stores distribution",
+    "Northeast": "Northeast stores distribution",
+    "Northwest": "Northwest stores distribution",
+    "Central-South": "Central South stores distribution",
+    "East China": "East China stores distribution"
   }
 }

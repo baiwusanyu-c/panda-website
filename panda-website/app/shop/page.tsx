@@ -1,30 +1,31 @@
 'use client'
 import { motion } from "motion/react";
 import { genVariant } from "@/utils";
-import type { ShopsInfo, ShopsInfoParams } from "@/app/shop/api/route";
+import {ResShopListDto, ShopsInfoParams} from "@/app/shop/api/route";
 import {useDebounceFn, useMount, useUnmount} from 'ahooks'
-import { useState } from "react";
+import {useEffect, useState} from "react";
+import {useLocale, useTranslations} from "next-intl";
 
 export default function NewsView() {
-    const [list, setList] = useState<ShopsInfo['shops']>([]);
+    const [list, setList] = useState<ResShopListDto['records']>([]);
     const [searchParams, setSearchParams] = useState<ShopsInfoParams>({
-        pageNo: 1,
-        pageSize: 8,
+        pageNum: '1',
+        pageSize: '8',
     });
 
     const [isAll, setIsAll] = useState<boolean>(false);
-    const [curType, setCurType] = useState<number>(-1);
+    const [curType, setCurType] = useState<string | undefined>(undefined);
     async function getShopsData(searchParams: ShopsInfoParams){
         const res = await fetch('http://localhost:3000/shop/api', {
             method: 'post',
             body: JSON.stringify(searchParams),
         });
         const resolveRes = await res.json()
-        if(curType !== searchParams.type){
-            setList(resolveRes.data.shops)
-            setCurType(searchParams.type!)
+        if(curType !== searchParams.regionEn){
+            setList(resolveRes.data.records)
+            setCurType(searchParams.regionEn!)
         } else {
-            setList(list.concat(resolveRes.data.shops))
+            setList(list.concat(resolveRes.data.records))
         }
         setIsAll(resolveRes.data.isAll)
     }
@@ -32,41 +33,80 @@ export default function NewsView() {
     const [typeList, setTypeList] = useState<Array<{
         name: string;
         selected: boolean,
-        value:  1 | 2 | 3 | 4 | 5 | 6;
-    }>>([
-        {
-            name: '西南',
-            selected: false,
-            value: 1,
-        },
-        {
-            name: '华北',
-            selected: false,
-            value: 2,
-        },
-        {
-            name:  '东北',
-            selected: false,
-            value: 3,
-        },
-        {
-            name: '西北',
-            selected: false,
-            value: 4,
-        },
-        {
-            name:  '中南',
-            selected: false,
-            value: 5,
-        },
-        {
-            name: '华东',
-            selected: false,
-            value: 6,
-        },
-    ]);
+        value:  'Southwest' | 'North China' | 'Northeast' | 'Northwest' | 'Central-South' | 'East China';
+    }>>([]);
 
-    const [curSelected, setCurSelected] = useState<number>(-1);
+    const lang = useLocale();
+    useEffect(() => {
+        if(lang === 'zh'){
+            setTypeList([
+                {
+                    name: '西南',
+                    selected: false,
+                    value: 'Southwest',
+                },
+                {
+                    name: '华北',
+                    selected: false,
+                    value: 'North China',
+                },
+                {
+                    name:  '东北',
+                    selected: false,
+                    value: 'Northeast',
+                },
+                {
+                    name: '西北',
+                    selected: false,
+                    value: 'Northwest',
+                },
+                {
+                    name:  '中南',
+                    selected: false,
+                    value: 'Central-South',
+                },
+                {
+                    name: '华东',
+                    selected: false,
+                    value: 'East China',
+                },
+            ])
+        } else {
+            setTypeList([
+                {
+                    name: 'Southwest',
+                    selected: false,
+                    value: 'Southwest',
+                },
+                {
+                    name: 'North China',
+                    selected: false,
+                    value: 'North China',
+                },
+                {
+                    name:  'Northeast',
+                    selected: false,
+                    value: 'Northeast',
+                },
+                {
+                    name: 'Northwest',
+                    selected: false,
+                    value: 'Northwest',
+                },
+                {
+                    name:  'Central South',
+                    selected: false,
+                    value: 'Central-South',
+                },
+                {
+                    name: 'East China',
+                    selected: false,
+                    value: 'East China',
+                },
+            ])
+        }
+    }, [lang])
+    const [curSelected, setCurSelected] = useState<string | undefined>(undefined);
     function handleClick(index: number) {
         const selected = !typeList[index].selected;
         const resolveList = typeList.map(item => {
@@ -77,23 +117,21 @@ export default function NewsView() {
         })
         resolveList[index].selected = selected
         if(selected){
-            setCurSelected(index)
+            setCurSelected(resolveList[index].value)
         } else {
-            setCurSelected(-1)
+            setCurSelected(undefined)
         }
         setTypeList([...resolveList]);
 
         const p = {
             ...searchParams,
-            pageNo: 1,
-            type: resolveList[index].value
+            pageNum: '1',
+            regionEn: resolveList[index].value
         }
         setSearchParams(p)
         getShopsData(p)
 
     }
-
-
     function handleScroll() {
         if(!isAll){
             const el = document.querySelector('#panda_tea_shops_layout');
@@ -110,7 +148,7 @@ export default function NewsView() {
                     // 如果满足条件，触发
                     const p = {
                         ...searchParams,
-                        pageNo: searchParams.pageNo + 1,
+                        pageNum: `${Number(searchParams.pageNum) + 1}`,
                     }
                     setSearchParams(p)
                     getShopsData(p)
@@ -136,6 +174,7 @@ export default function NewsView() {
             el.removeEventListener('scroll', run)
         }
     })
+    const t = useTranslations('stores');
     return (
       <div className="panda-tea-shops bg-cbd-white w-full">
           <div className="fcc pr">
@@ -147,8 +186,9 @@ export default function NewsView() {
                                       onClick={() => { handleClick(index) }}
                                       className={`
                                   w-[98px] h-[98px] rounded-full shadow-lg text-center 
-                                  pf-regular-22 font-bold leading-[98px]  bg-cbd-white 
-                                  ${index === curSelected ? '!bg-cbd-brand-5 text-cbd-white' : ''}
+                                  leading-[98px]  bg-cbd-white 
+                                  ${lang === 'zh' ? 'pf-regular-22 font-bold' : 'pf-regular-14 text-cbd-gray-6'}
+                                  ${info.value === curSelected ? '!bg-cbd-brand-5 text-cbd-white' : ''}
                                   hover:bg-cbd-brand-5 hover:text-cbd-white mx-[25px]`}>
                               {info.name}
                           </div>
@@ -164,7 +204,7 @@ export default function NewsView() {
               <motion.div
                 variants={genVariant(0.3)}
                 className='text-[32px] text-cbd-gray-6 font-bold'>
-                  茬白稻所有门店分布
+                  { t(!curSelected ? 'title' : curSelected)}
               </motion.div>
               <div
                 className="grid grid-cols-4 max-w-[1500px] min-w-[1200px] overflow-hidden pb-[20px] mt-[60px] mx-auto w-full">
@@ -176,7 +216,9 @@ export default function NewsView() {
                             animate="onscreen"
                             variants={genVariant(0.3)}
                             className='border-0 border-b-[1px]  border-solid border-cbd-gray-3 py-[18px] box-border'>
-                              <p className='text-[15px] text-cbd-gray-6 leading-[34px]'>{info.name}</p>
+                              <p className='text-[15px] text-cbd-gray-6 leading-[34px]'>{
+                                  lang === 'zh' ? info.name : info.nameEn
+                              }</p>
                           </motion.div>
                       })
                   }
