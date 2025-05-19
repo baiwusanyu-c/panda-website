@@ -4,7 +4,8 @@ import Link from "next/link";
 // 添加动画后，无法在浏览器开发工具 preview，但是 response 里是有 dom 的
 import { motion } from "motion/react"
 import { genVariant } from "@/utils";
-// TODO:i18n
+import {useTranslations} from "next-intl";
+
 export function PandaFooter({
 data,
 children,
@@ -12,6 +13,7 @@ children,
   data: BasicInfo
   children?:React.ReactNode;
 }>){
+  const t = useTranslations('common');
   return <footer>
     { children ? children :<></> }
     <div className='h-[130px] bg-cbd-brand-5 w-full fcc'>
@@ -24,27 +26,27 @@ children,
         <motion.div
           variants={genVariant(0)}
           className='text-cbd-brand-8 text-[16px] text-center leading-[23px] mt-[10px]'>
-          版权所有：{data.footerInfo.name}
+          {t('footerLabel.copyright')}：{t('footerInfo.name')}
         </motion.div>
         <motion.div
           variants={genVariant(0.3)}
           className='text-cbd-brand-8 text-[16px] text-center leading-[23px] mt-[10px] fbc'>
-          <Link href={data.footerInfo.beian.url}
+          <Link href={t('footerInfo.beian.url')}
                         target='_blank'>
-            备案号：{data.footerInfo.beian.no}
+            {t('footerLabel.beian')}：{t('footerInfo.beian.no')}
         </Link>
-          <span>成都总部地址：{data.footerInfo.addr}</span>
-          <span>网站总访问量：{data.footerInfo.visits}</span>
+          <span> {t('footerLabel.addr')}：{t('footerInfo.addr')}</span>
+          <span> {t('footerLabel.visits')}：{t('footerInfo.visits')}</span>
         </motion.div>
         <motion.div
           variants={genVariant(0.6)}
           className='text-cbd-white text-[16px] text-center leading-[23px] mt-[10px]'>
-          <span>茬白稻唯一官网：{data.footerInfo.website}</span>
-          <span className='mx-[10px]'> 加盟热线：{data.footerInfo.franchiseHotline}</span>
-          <span className='mr-[10px]'>客服热线：{data.footerInfo.customerServiceHotline}</span>
-          <Link href={data.footerInfo.support.url}
+          <span>{t('footerLabel.website')}：{t('footerInfo.website')}</span>
+          <span className='mx-[10px]'> {t('footerLabel.franchiseHotline')}：{t('footerInfo.franchiseHotline')}</span>
+          <span className='mr-[10px]'>{t('footerLabel.customerServiceHotline')}：{t('footerInfo.customerServiceHotline')}</span>
+          <Link href={t('footerInfo.support.url')}
                           target='_blank'>
-            技术支持：{data.footerInfo.support.name}
+            {t('footerLabel.support')}：{t('footerInfo.support.name')}
         </Link>
         </motion.div>
       </motion.div>

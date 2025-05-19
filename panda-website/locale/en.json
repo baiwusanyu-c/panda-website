@@ -1,5 +1,42 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "common": {
+    "tel": "4000-515-000",
+    "headerTitle": "Franchise Hotline",
+    "locale": "CN",
+    "products": [
+      "Triple Berry Goodnight Cup",
+      "Yang Zhi Gan Lu",
+      "Black as Pitch",
+      "Brown Sugar Pearl Milk Tea",
+      "Soy Milk Glutinous Rice Pudding",
+      "Bamboo-Infused Oolong Milk",
+      "Green Grape Jasmine"
+    ],
+    "footerInfo": {
+      "name": "Sichuan Shushuhsushu Enterprise Management Consulting Co.",
+      "beian": {
+        "no": " Shu ICP No. 20210114514",
+        "url": "https://beian.miit.gov.cn/#/Integrated/index"
+      },
+      "addr": "Jiayu Financial Technology Center, No. 777, Mingdu Road, Wuhou District, Chengdu",
+      "visits": "114514",
+      "website": "www.pandaTea.com",
+      "franchiseHotline": "4000-515-3258",
+      "customerServiceHotline": "4000-287-7401",
+      "support": {
+        "name": "ikun Technology",
+        "url": "https://github.com/baiwusanyu-c"
+      }
+    },
+    "footerLabel": {
+      "copyright": "Property In Copyright",
+      "beian": "Record Number",
+      "addr": "Chengdu Headquarters Address",
+      "visits": "Total Site Visits",
+      "website": "Official Website",
+      "franchiseHotline": "Franchise Hotline",
+      "customerServiceHotline": "Customer Service Hotline",
+      "support": "Technical Support"
+    }
   }
 }

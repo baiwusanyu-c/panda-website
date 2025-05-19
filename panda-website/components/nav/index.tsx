@@ -6,7 +6,7 @@ import { NavItem } from "@/components/nav/NavItem";
 import {startTransition, useEffect, useMemo, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
 import {MenuItem} from "@/app/api/route";
-import {useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import {Locale, setUserLocale} from "@/locale/locale-cookie";
 import { motion, AnimatePresence } from "motion/react"
 
@@ -20,7 +20,8 @@ export interface PandaNavProps {
 // TODO: i18n
 
 export default function PandaNav(props: PandaNavProps) {
-  const { list, headerTitle, tel } = props;
+  const { list } = props;
+  const t = useTranslations('common');
   const [linkList, setLinkList] = useState<MenuItem[]>(list);
   const [width, setWidth] = useState(globalThis.innerWidth);
 
@@ -196,9 +197,9 @@ export default function PandaNav(props: PandaNavProps) {
             className='!text-cbd-brand-5'/>
         </div>
         <ul className="text-cbd-white text-[16px] mx-[10px]">
-          {headerTitle}
+          {t('headerTitle')}
           <br/>
-          <span className='text-cbd-white text-[19px] font-bold'> {tel}</span>
+          <span className='text-cbd-white text-[19px] font-bold'> {t('tel')}</span>
         </ul>
         <div className='fcc h-[30px] mr-[16px]'
              onMouseEnter={handleMouseEnter}

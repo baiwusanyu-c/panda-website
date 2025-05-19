@@ -1,5 +1,42 @@
 {
-  "HomePage": {
-    "title": "你好，三体"
+  "common": {
+    "tel": "4000-515-000",
+    "headerTitle": "茬白稻唯一加盟电话",
+    "locale": "CN",
+    "products": [
+      "茉莉奶绿",
+      "杨枝甘露",
+      "西瓜啵啵",
+      "超级杯水果茶",
+      "招牌芋圆奶茶",
+      "芒芒生打椰",
+      "青提茉莉"
+    ],
+    "footerInfo": {
+      "name": "四川蜀蜀蜀蜀企业管理咨询有限公司",
+      "beian": {
+        "no": "蜀ICP备20210114514号",
+        "url": "https://beian.miit.gov.cn/#/Integrated/index"
+      },
+      "addr": "成都市武侯区名都路777号嘉尔金融科技中心",
+      "visits": "114514",
+      "website": "www.pandaTea.com",
+      "franchiseHotline": "4000-515-3258",
+      "customerServiceHotline": "4000-287-7401",
+      "support": {
+        "name": "爱坤科技",
+        "url": "https://github.com/baiwusanyu-c"
+      }
+    },
+    "footerLabel": {
+      "copyright": "版权所有",
+      "beian": "备案号",
+      "addr": "成都总部地址",
+      "visits": "网站总访问量",
+      "website": "茬白稻唯一官网",
+      "franchiseHotline": "加盟热线",
+      "customerServiceHotline": "客服热线",
+      "support": "技术支持"
+    }
   }
 }
