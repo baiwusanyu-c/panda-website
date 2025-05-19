@@ -333,12 +333,17 @@ export default function HomePage(props: HomePageProps) {
                   </div>
                   <div className='bg-cbd-white fsc flex-col mt-[30px] rounded-[40px] overflow-y-auto py-[40px]'>
                       <div className=' h-[260px] fsc w-full mt-[35px]'>
-                          <div className='w-1/5 fcc text-cbd-brand-5 leading-[72px] text-[30px] font-bold'>
-                              {headquarter.name}
+                          <div className={`w-1/5 fcc text-cbd-brand-5 leading-[72px] text-[30px] font-bold`}>
+                              {lang === 'zh' ? headquarter.name : headquarter.nameEn}
                           </div>
-                          <div className='grid grid-cols-2 gap-x-60 text-cbd-gray-6 fsc text-[16px] leading-[32px]'>
-                              <div className='fsc'><EnvironmentFilled
-                                  className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>{headquarter.address}</div>
+
+                          <div className={`
+                                ${lang === 'zh' ? 'text-[16px]' : 'text-[14px] leading-[24px]'}
+                                grid grid-cols-2 gap-x-60 text-cbd-gray-6 fsc leading-[40px]`}>
+                              <div className={`fsc ${lang === 'zh' ? '' : 'leading-[24px]'}`}>
+                                  <EnvironmentFilled className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>
+                                  {lang === 'zh' ? headquarter.address : headquarter.addressEn}
+                              </div>
                               <div className='fsc'><WechatFilled
                                   className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>{headquarter.weChat}</div>
                               <div className='fsc'><IeCircleFilled
@@ -365,11 +370,14 @@ export default function HomePage(props: HomePageProps) {
                       <div className='fsc w-full'>
                           <div className='w-1/5'/>
                           <div
-                              className='grid grid-cols-2  text-cbd-gray-6 text-[16px] leading-[36px] text-left w-full'>
+                              className={`
+                               ${lang === 'zh' ? 'text-[16px]' : 'text-[12px]'} 
+                              grid grid-cols-2  text-cbd-gray-6 leading-[36px] text-left w-full`}>
                               {
                                   operationCenters.map(c => {
                                       return <div key={c.address}>
-                                          {c.name}: {c.address}
+                                          {lang === 'zh' ? c.name : c.nameEn}:
+                                          {lang === 'zh' ? c.address : c.addressEn}
                                       </div>
                                   })
                               }

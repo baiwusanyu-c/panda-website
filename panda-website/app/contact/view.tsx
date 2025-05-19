@@ -13,6 +13,7 @@ import {
     WechatFilled,
 } from '@ant-design/icons'
 import {useEffect, useRef} from "react";
+import {useLocale} from "next-intl";
 
 const AMapLoader = async () => {
     return (await import('@amap/amap-jsapi-loader')).default;
@@ -49,6 +50,7 @@ export function ContactView (props: ContactViewProps) {
         }
     })
 
+    const lang = useLocale();
     return (
         <motion.div
             initial="offscreen"
@@ -64,14 +66,19 @@ export function ContactView (props: ContactViewProps) {
                 </div>
                 <div
                     className='text-[32px] text-cbd-gray-6'>
-                    联系我们
+                    {lang === 'zh' ? '联系我们' : ''}
                 </div>
                 <div className='bg-cbd-brand-1 h-[260px] fsc w-full mt-[35px] py-[40px]'>
-                    <div className='w-1/5 fcc text-cbd-brand-5 leading-[72px] text-[30px] font-bold'>
-                        {data.headquarter.name}
+                    <div className={`w-1/5 fcc text-cbd-brand-5 leading-[72px] text-[30px] font-bold`}>
+                        {lang === 'zh' ? data.headquarter.name : data.headquarter.nameEn}
                     </div>
-                    <div className='grid grid-cols-2 gap-x-60 text-cbd-gray-6 fsc text-[16px] leading-[40px]'>
-                        <div className='fsc'><EnvironmentFilled className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>{ data.headquarter.address }</div>
+                    <div className={`
+                    ${lang === 'zh' ? 'text-[16px]' : 'text-[14px] leading-[24px]'}
+                    grid grid-cols-2 gap-x-60 text-cbd-gray-6 fsc leading-[40px]`}>
+                        <div className={`fsc ${lang === 'zh' ? '' : 'leading-[24px]'}`}>
+                            <EnvironmentFilled className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>
+                            {lang === 'zh' ? data.headquarter.address : data.headquarter.addressEn}
+                        </div>
                         <div className='fsc'><WechatFilled className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>{ data.headquarter.weChat }</div>
                         <div className='fsc'><IeCircleFilled className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>{ data.headquarter.website }</div>
                         <div className='fsc'><PhoneFilled className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>{ data.headquarter.supervisionPhone }</div>
@@ -82,11 +89,16 @@ export function ContactView (props: ContactViewProps) {
                         <div className='fsc'><PhoneFilled className='!text-cbd-brand-5 text-[23px] mr-[15px]'/>{ data.headquarter.customerServiceHotline }</div>
                     </div>
                 </div>
-                <div className='grid grid-cols-2 gap-x-60 text-cbd-gray-6 text-[16px] leading-[36px] mt-[35px] text-left w-full'>
+                <div className={
+                    `
+                    ${lang === 'zh' ? 'text-[16px]' : 'text-[12px]'} 
+                    grid grid-cols-2 gap-x-60 text-cbd-gray-6 leading-[36px] mt-[35px] text-left w-full`
+                }>
                     {
                         data.operationCenters.map(c => {
                             return <div key={c.address}>
-                                {c.name}: {c.address}
+                                {lang === 'zh' ? c.name : c.nameEn}:
+                                {lang === 'zh' ? c.address : c.addressEn}
                             </div>
                         })
                     }
