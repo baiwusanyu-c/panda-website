@@ -1,12 +1,14 @@
 'use client'
 import {motion} from "motion/react";
 import {genVariant} from "@/utils";
-import type { NewsInfo } from "@/app/news/api/route";
+import {ResNewsDto} from "@/app/news/api/route";
 import { InfoCard } from "@/components/info-card";
+import {useLocale} from "next-intl";
 interface NewsViewProps {
-    news: NewsInfo['news'];
+    news: ResNewsDto[];
 }
 export default function NewsView(props: NewsViewProps) {
+    const lang = useLocale();
     return (
         <div className="panda-tea-news overflow-x-hidden bg-cbd-white w-full">
             <motion.div
@@ -22,7 +24,7 @@ export default function NewsView(props: NewsViewProps) {
                 <motion.div
                     variants={genVariant(0.3)}
                     className='text-[32px] text-cbd-gray-6'>
-                    新闻动态
+                    { lang === 'zh' ? '新闻动态' : ''}
                 </motion.div>
                 <div className="grid grid-cols-3 gap-10 max-w-[1500px] min-w-[1200px] overflow-hidden pb-[80px] mt-[60px] mx-auto">
                     {

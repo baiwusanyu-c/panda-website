@@ -21,7 +21,7 @@ import {
 } from "@ant-design/icons";
 import {InfoCard} from "@/components/info-card";
 import './style.css'
-import {useTranslations} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import {useMemo} from "react";
 export interface HomePageProps {
     data: HomeInfo
@@ -29,13 +29,13 @@ export interface HomePageProps {
 export default function HomePage(props: HomePageProps) {
    const {
        shopContactList,
-       intro,
        headquarter,
        operationCenters,
        news
    } = props.data;
 
   const t = useTranslations('common');
+  const tAbout = useTranslations('about');
   const products = useMemo(() => {
       return [
           'product1',
@@ -49,6 +49,7 @@ export default function HomePage(props: HomePageProps) {
           return t(`products.${key}`)
       })
   }, [t])
+  const lang = useLocale();
   return (
       <div className="chapanda-tea-home overflow-x-hidden bg-cbd-white w-full">
           {/*TODO: 动画*/}
@@ -106,7 +107,7 @@ export default function HomePage(props: HomePageProps) {
 
               </div>
           </div>
-          <PandaTeaIntroduction intro={intro} id='home_introduction'/>
+          <PandaTeaIntroduction intro={tAbout(`introduce`)} id='home_introduction'/>
           <video id="slider" autoPlay loop controls className='mx-auto my-0 max-w-[1500px] min-w-[1200px] w-[94%]'>
               <source src="https://i02.appmifile.com/37_operatorx_operatorx_xm/21/08/2024/cb3e152f01ffc96f512693bbc46aa232.mp4" type="video/mp4"/>
           </video>
@@ -126,7 +127,7 @@ export default function HomePage(props: HomePageProps) {
                   <motion.div
                       variants={genVariant(0.5)}
                       className='text-[32px] text-cbd-gray-6 mt-[10px]'>
-                      产品推荐
+                      {lang === 'zh' ? '产品推荐' : ''}
                   </motion.div>
               </div>
               <div className='w-full'>
@@ -242,7 +243,7 @@ export default function HomePage(props: HomePageProps) {
                       <motion.p
                           variants={genVariantX(0.2, 30)}
                           className='text-[32px] text-cbd-white  text-right mt-[10px]'>
-                          招商加盟
+                          {lang === 'zh' ? '招商加盟' : ''}
                       </motion.p>
                       <motion.p
                           variants={genVariantX(0.4, 30)}
@@ -272,7 +273,7 @@ export default function HomePage(props: HomePageProps) {
                   <motion.div
                       variants={genVariant(0.5)}
                       className='text-[32px] text-cbd-gray-6 mt-[10px]'>
-                      新闻中心
+                      {lang === 'zh' ? '新闻中心' : ''}
                   </motion.div>
                   <Swiper
                       slidesPerView={1}
@@ -326,9 +327,8 @@ export default function HomePage(props: HomePageProps) {
                           className='text-[44px] text-cbd-brand-5 leading-[1.5] font-bold'>
                           Contact Us
                       </div>
-                      <div
-                          className='text-[32px] text-cbd-gray-6'>
-                          联系我们
+                      <div className='text-[32px] text-cbd-gray-6'>
+                          {lang === 'zh' ? '联系我们' : ''}
                       </div>
                   </div>
                   <div className='bg-cbd-white fsc flex-col mt-[30px] rounded-[40px] overflow-y-auto py-[40px]'>

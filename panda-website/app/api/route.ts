@@ -1,4 +1,5 @@
 import {NextResponse} from 'next/server';
+import {BASE_URL} from "@/utils/env";
 
 export interface MenuItem {
   name: string;
@@ -18,7 +19,7 @@ export async function POST() {
     links: [],
   }
 
-  const res = await fetch('http://localhost:8084/menu/getTreeMenus', { method: 'post' });
+  const res = await fetch(`${BASE_URL}/menu/getTreeMenus`, { method: 'post' });
   data.links = (await res.json()).data
 
   return NextResponse.json({ data })
