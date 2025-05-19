@@ -6,7 +6,6 @@ import type {NewsInfo} from "@/app/news/api/route";
 
 export interface HomeInfo {
     intro: string
-    productList: string[]
     headquarter: AddressItem
     operationCenters: AddressItem[]
     news: Array<NewsInfo["news"]>
@@ -74,7 +73,6 @@ export async function POST() {
                 link: '/home'
             }
         ],
-        productList: homeRes.data.products,
         headquarter: contactDataRes.data.headquarter,
         operationCenters: contactDataRes.data.operationCenters,
         news

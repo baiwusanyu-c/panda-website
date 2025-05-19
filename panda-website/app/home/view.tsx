@@ -21,6 +21,8 @@ import {
 } from "@ant-design/icons";
 import {InfoCard} from "@/components/info-card";
 import './style.css'
+import {useTranslations} from "next-intl";
+import {useMemo} from "react";
 export interface HomePageProps {
     data: HomeInfo
 }
@@ -28,11 +30,26 @@ export default function HomePage(props: HomePageProps) {
    const {
        shopContactList,
        intro,
-       productList,
        headquarter,
        operationCenters,
        news
    } = props.data;
+
+  const t = useTranslations('common');
+  const keys = [
+      'product1',
+      'product2',
+      'product3',
+      'product4',
+      'product5',
+      'product6',
+      'product7',
+  ]
+  const products = useMemo(() => {
+      return keys.map(key => {
+          return t(`products.${key}`)
+      })
+  }, [t])
   return (
       <div className="chapanda-tea-home overflow-x-hidden bg-cbd-white w-full">
           {/*TODO: 动画*/}
@@ -119,7 +136,7 @@ export default function HomePage(props: HomePageProps) {
                   </div>
                   <div className='bg-cbd-brand-5 h-[580px]'>
                       <div className='fcc pr left-0 -top-[320px]'>
-                          <ProductCarousel list={productList}/>
+                          <ProductCarousel list={products}/>
                       </div>
                       <div className=' my-0 w-full pr left-0 -top-[320px]'>
                           <div className='w-[46%] bg-[#2545cb] pt-[46%] rounded-full left-0 top-[100px] pa'></div>

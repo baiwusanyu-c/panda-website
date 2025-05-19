@@ -3,9 +3,28 @@ import {motion} from "motion/react";
 import {genVariant} from "@/utils";
 import {Wave} from "@/components/wave";
 import {ProductCarousel} from "@/components/product-carousel";
+import {useLocale, useTranslations} from "next-intl";
+import {useMemo} from "react";
 
 
-export default function ProductView(props:{ list: string[]}) {
+export default function ProductView() {
+
+  const t = useTranslations('common');
+  const keys = [
+    'product1',
+    'product2',
+    'product3',
+    'product4',
+    'product5',
+    'product6',
+    'product7',
+  ]
+  const list = useMemo(() => {
+    return keys.map(key => {
+      return t(`products.${key}`)
+    })
+  }, [t])
+  const lang = useLocale();
   return (
     <div className="panda-tea-product overflow-x-hidden bg-cbd-white w-full">
       <motion.div
@@ -24,7 +43,9 @@ export default function ProductView(props:{ list: string[]}) {
           <motion.div
             variants={genVariant(0.5)}
             className='text-[32px] text-cbd-gray-6 mt-[10px]'>
-            产品推荐
+            {
+              lang === 'zh' ? '产品推荐' : ''
+            }
           </motion.div>
         </div>
         <div className='w-full'>
@@ -33,7 +54,7 @@ export default function ProductView(props:{ list: string[]}) {
           </div>
           <div className='bg-cbd-brand-5 h-[580px]'>
             <div className='fcc pr left-0 -top-[320px]'>
-              <ProductCarousel list={props.list}/>
+              <ProductCarousel list={list}/>
             </div>
             <div className=' my-0 w-full pr left-0 -top-[320px]'>
               <div className='w-[46%] bg-[#2545cb] pt-[46%] rounded-full left-0 top-[100px] pa'></div>

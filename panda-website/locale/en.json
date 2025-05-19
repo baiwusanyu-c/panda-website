@@ -3,15 +3,15 @@
     "tel": "4000-515-000",
     "headerTitle": "Franchise Hotline",
     "locale": "CN",
-    "products": [
-      "Triple Berry Goodnight Cup",
-      "Yang Zhi Gan Lu",
-      "Black as Pitch",
-      "Brown Sugar Pearl Milk Tea",
-      "Soy Milk Glutinous Rice Pudding",
-      "Bamboo-Infused Oolong Milk",
-      "Green Grape Jasmine"
-    ],
+    "products": {
+     "product1":"Triple Berry Goodnight Cup",
+     "product2":"Yang Zhi Gan Lu",
+     "product3":"Black as Pitch",
+     "product4":"Brown Sugar Pearl Milk Tea",
+     "product5":"Soy Milk Glutinous Rice Pudding",
+     "product6":"Bamboo-Infused Oolong Milk",
+     "product7":"Green Grape Jasmine"
+    },
     "footerInfo": {
       "name": "Sichuan Shushuhsushu Enterprise Management Consulting Co.",
       "beian": {

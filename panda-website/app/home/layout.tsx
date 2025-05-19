@@ -3,7 +3,6 @@ import {Wave} from "@/components/wave";
 import type {BasicInfo} from "@/app/api/route";
 import {TopBlock} from "@/components/top-block";
 
-// TODO: 获取 Footer 数据
 export default async function RootLayout({
 children,
 }: Readonly<{
