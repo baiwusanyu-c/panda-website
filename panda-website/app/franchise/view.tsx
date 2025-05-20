@@ -1,15 +1,31 @@
 "use client";
-import type { FranchiseInfo } from "@/app/franchise/api/route";
+import type { ResFranchiseDto } from "@/app/franchise/api/route";
 import { motion } from "motion/react";
 import { genVariant, genVariantX } from "@/utils";
 import Image from "next/image";
 import { NormalCard } from "@/components/normal-card";
+import { useLocale, useTranslations } from "next-intl";
+import { useMemo } from "react";
 
 export interface FranchiseProps {
-	info: FranchiseInfo;
+	info: ResFranchiseDto[];
 }
 export default function FranchiseView(props: FranchiseProps) {
 	const { info } = props;
+	const lang = useLocale();
+	const t = useTranslations("franchise");
+	const advantages = useMemo(() => {
+		return [
+			"advantage1",
+			"advantage2",
+			"advantage3",
+			"advantage4",
+			"advantage5",
+			"advantage6",
+		].map((v) => {
+			return t(v);
+		});
+	}, [t]);
 	return (
 		<div className="panda-tea-news overflow-x-hidden bg-cbd-white w-full">
 			<motion.div
@@ -29,14 +45,16 @@ export default function FranchiseView(props: FranchiseProps) {
 					variants={genVariant(0.3)}
 					className="text-[32px] text-cbd-gray-6"
 				>
-					加盟优势
+					{lang === "zh" ? "加盟优势" : ""}
 				</motion.div>
-				<div className="grid grid-cols-6 gap-30 max-w-[1500px] min-w-[1200px] overflow-hidden pb-[80px] mt-[60px] mx-auto">
-					{info.advantage.map((it, index) => {
+				<motion.div
+					variants={genVariant(0.6)}
+					className="grid grid-cols-6 gap-10 max-w-[1500px] min-w-[1200px] overflow-hidden pb-[80px] mt-[60px] mx-auto"
+				>
+					{advantages.map((it, index) => {
 						return (
-							<motion.div
+							<div
 								key={it}
-								variants={genVariant(0.6)}
 								className="text-[32px] text-cbd-gray-6 fcc flex-col"
 							>
 								<Image
@@ -47,11 +65,19 @@ export default function FranchiseView(props: FranchiseProps) {
 									height={125}
 									priority
 								/>
-								<span className="pf-regular-22 leading-[30px]">{it}</span>
-							</motion.div>
+								<span
+									className={
+										lang === "zh"
+											? "pf-regular-22 leading-[30px]"
+											: "pf-regular-18 leading-[30px]"
+									}
+								>
+									{it}
+								</span>
+							</div>
 						);
 					})}
-				</div>
+				</motion.div>
 			</motion.div>
 			<motion.div
 				initial="offscreen"
@@ -69,10 +95,10 @@ export default function FranchiseView(props: FranchiseProps) {
 						priority
 					/>
 					<span className="pf-regular-24 text-[30px] text-cbd-white mr-[72px]">
-						加盟电话: {info.tel}
+						{t("tel")}: 4000-515-000
 					</span>
 					<span className="pf-regular-24 text-[30px] text-cbd-white">
-						(接听时段: 09: 00-18: 00)
+						({t("callTime")}: 09: 00-18: 00)
 					</span>
 				</motion.div>
 			</motion.div>
@@ -93,10 +119,10 @@ export default function FranchiseView(props: FranchiseProps) {
 					variants={genVariant(0.3)}
 					className="text-[32px] text-cbd-gray-6"
 				>
-					加盟流程
+					{lang === "zh" ? "加盟流程" : ""}
 				</motion.div>
 				<div className="grid grid-cols-5 gap-10 max-w-[1500px] min-w-[1200px] overflow-hidden pb-[80px] mt-[60px] mx-auto">
-					{info.process.map((it, index) => {
+					{info.map((it, index) => {
 						return (
 							<motion.div
 								key={it.title}
@@ -104,9 +130,23 @@ export default function FranchiseView(props: FranchiseProps) {
 								className={`${index === 4 ? "" : "fsc"}`}
 							>
 								<NormalCard>
-									<p className="pf-regular-22 mb-[12px]">{it.title}</p>
-									<p className="pf-regular-16 leading-[23px] text-cbd-gray-6">
-										{it.description}
+									<p
+										className={
+											lang === "zh"
+												? "pf-regular-22 mb-[12px]"
+												: "pf-regular-20 mb-[6px]"
+										}
+									>
+										{lang === "zh" ? it.title : it.titleEn}
+									</p>
+									<p
+										className={`${
+											lang === "zh"
+												? "pf-regular-16 leading-[24px]"
+												: "pf-regular-14 leading-[16px]"
+										} text-cbd-gray-6"`}
+									>
+										{lang === "zh" ? it.detail : it.detailEn}
 									</p>
 								</NormalCard>
 								<div className="pr">
@@ -145,11 +185,11 @@ export default function FranchiseView(props: FranchiseProps) {
 					variants={genVariant(0.3)}
 					className="text-[32px] text-cbd-gray-6"
 				>
-					投资费用
+					{lang === "zh" ? "投资费用" : ""}
 				</motion.div>
 				<motion.div variants={genVariant(0.6)}>
 					<Image
-						src={"/franchise/fee.webp"}
+						src={`/franchise/fee.${lang}.webp`}
 						alt="Fee"
 						className="mt-[30px]"
 						priority

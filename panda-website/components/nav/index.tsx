@@ -17,8 +17,6 @@ export interface PandaNavProps {
 	tel: string;
 }
 
-// TODO: i18n
-
 export default function PandaNav(props: PandaNavProps) {
 	const { list } = props;
 	const t = useTranslations("common");

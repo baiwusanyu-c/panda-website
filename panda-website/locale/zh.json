@@ -77,5 +77,15 @@
     "bilibiliLink": "/home",
     "join": "茬白稻火热加盟中ing...",
     "advantage": "标准化操作 / 整店输出 / 全程帮扶 / 0经验也可以开店"
+  },
+  "franchise": {
+    "advantage1": "规范化店面",
+    "advantage2": "专业设计",
+    "advantage3": "统一化运作",
+    "advantage4": "规范化管理",
+    "advantage5": "标准化产品",
+    "advantage6": "专业化产品",
+    "tel": "加盟电话",
+    "callTime": "接听时段"
   }
 }

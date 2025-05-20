@@ -77,5 +77,15 @@
     "bilibiliLink": "/home",
     "join": "PandaTea invites you to join!",
     "advantage": "Standardized operation/whole store output/full help / 0 experience can also open a shop"
+  },
+  "franchise": {
+    "advantage1": "Standardized store",
+    "advantage2": "Professional design",
+    "advantage3": "Unified operation",
+    "advantage4": "Standardized management",
+    "advantage5": "Standardized product",
+    "advantage6": "Specialized product",
+    "tel": "Join us at",
+    "callTime": "Call time"
   }
 }
