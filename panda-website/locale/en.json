@@ -61,5 +61,21 @@
     "Northwest": "Northwest stores distribution",
     "Central-South": "Central South stores distribution",
     "East China": "East China stores distribution"
+  },
+  "home": {
+    "name": "PandaTea",
+    "exceeds": "stores exceeded",
+    "wechat": "WeChat official account",
+    "weibo": "Weibo",
+    "tiktok": "Tiktok",
+    "xhs": "Xiaohongshu",
+    "bilibili": "Bilibili",
+    "wechatLink": "/home",
+    "weiboLink": "/home",
+    "tiktokLink": "/home",
+    "xhsLink": "/home",
+    "bilibiliLink": "/home",
+    "join": "PandaTea invites you to join!",
+    "advantage": "Standardized operation/whole store output/full help / 0 experience can also open a shop"
   }
 }

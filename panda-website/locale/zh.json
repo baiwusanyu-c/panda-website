@@ -61,5 +61,21 @@
     "Northwest": "西北门店分布",
     "Central-South": "华中门店分布",
     "East China": "华东门店分布"
+  },
+  "home": {
+    "name": "茬白稻",
+    "exceeds": "全国门店超",
+    "wechat": "微信公众号",
+    "weibo": "微博",
+    "tiktok": "抖音",
+    "xhs": "小红书",
+    "bilibili": "B站",
+    "wechatLink": "/home",
+    "weiboLink": "/home",
+    "tiktokLink": "/home",
+    "xhsLink": "/home",
+    "bilibiliLink": "/home",
+    "join": "茬白稻火热加盟中ing...",
+    "advantage": "标准化操作 / 整店输出 / 全程帮扶 / 0经验也可以开店"
   }
 }

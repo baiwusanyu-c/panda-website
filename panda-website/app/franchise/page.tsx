@@ -12,12 +12,12 @@ import type { FranchiseInfo } from "@/app/franchise/api/route";
 // }
 
 export default async function FranchisePage() {
-    async function getFranchiseData(){
-        const res = await fetch('http://localhost:3000/franchise/api', { method: 'post' });
-        return await res.json()
-    }
-    const franchiseRes: { data: FranchiseInfo } = await getFranchiseData()
-    return (
-        <FranchiseView info={franchiseRes.data}  />
-    );
+	async function getFranchiseData() {
+		const res = await fetch("http://localhost:3000/franchise/api", {
+			method: "post",
+		});
+		return await res.json();
+	}
+	const franchiseRes: { data: FranchiseInfo } = await getFranchiseData();
+	return <FranchiseView info={franchiseRes.data} />;
 }
