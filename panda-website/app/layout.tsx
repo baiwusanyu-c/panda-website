@@ -4,6 +4,9 @@ import PandaNav from "@/components/nav";
 import type { BasicInfo } from "@/app/api/route";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { SSE_URL } from "@/utils";
+import { LoginBtn } from "@/components/login-btn";
+import { ToastProvider } from "@heroui/toast";
 
 const oppoSans = localFont({
 	src: "./fonts/fangzx.ttf",
@@ -16,7 +19,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	async function getData() {
-		const res = await fetch("http://localhost:3000/api", { method: "post" });
+		const res = await fetch(`${SSE_URL}/api`, { method: "post" });
 		return await res.json();
 	}
 	const res: { data: BasicInfo } = await getData();
@@ -28,13 +31,10 @@ export default async function RootLayout({
 				style={{ fontFamily: "var(--oppp-sans)" }}
 			>
 				<NextIntlClientProvider>
-					<PandaNav
-						headerTitle={res.data.headerTitle}
-						locale={res.data.locale}
-						tel={res.data.tel}
-						list={res.data.links}
-					></PandaNav>
+					<ToastProvider />
+					<PandaNav list={res.data.links}></PandaNav>
 					{children}
+					<LoginBtn />
 				</NextIntlClientProvider>
 			</body>
 		</html>

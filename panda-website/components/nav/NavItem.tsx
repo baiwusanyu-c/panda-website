@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import "./style.css";
 import { usePathname } from "next/navigation";
-import { Tooltip } from "@nextui-org/tooltip";
+import { Tooltip } from "@heroui/tooltip";
 import type { MenuItem } from "@/app/api/route";
 import { useLocale } from "next-intl";
 

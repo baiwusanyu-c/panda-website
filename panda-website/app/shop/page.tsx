@@ -5,7 +5,6 @@ import type { ResShopListDto, ShopsInfoParams } from "@/app/shop/api/route";
 import { useDebounceFn, useMount, useUnmount } from "ahooks";
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-
 export default function NewsView() {
 	const [list, setList] = useState<ResShopListDto["records"]>([]);
 	const [searchParams, setSearchParams] = useState<ShopsInfoParams>({
@@ -16,7 +15,7 @@ export default function NewsView() {
 	const [isAll, setIsAll] = useState<boolean>(false);
 	const [curType, setCurType] = useState<string | undefined>(undefined);
 	async function getShopsData(searchParams: ShopsInfoParams) {
-		const res = await fetch("http://localhost:3000/shop/api", {
+		const res = await fetch("${SSE_URL}/shop/api", {
 			method: "post",
 			body: JSON.stringify(searchParams),
 		});

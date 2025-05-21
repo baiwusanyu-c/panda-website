@@ -12,9 +12,6 @@ import { motion, AnimatePresence } from "motion/react";
 
 export interface PandaNavProps {
 	list: MenuItem[];
-	locale: string;
-	headerTitle: string;
-	tel: string;
 }
 
 export default function PandaNav(props: PandaNavProps) {

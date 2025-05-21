@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { CorporateGovernanceResInfo } from "@/app/investor/corporate-governance/api/route";
 import type { ListingDocsInfo } from "@/app/investor/listing-docs/api/route";
 import type { AnnouncementsNoticesResInfo } from "@/app/investor/announcements-notices/api/route";
-
+import { SSE_URL } from "@/utils";
 export interface InvestorResInfo {
 	description: string;
 	listingDocsList: ListingDocsInfo;
@@ -11,25 +11,23 @@ export interface InvestorResInfo {
 }
 
 async function getListingDocsData() {
-	const res = await fetch("http://localhost:3000/investor/listing-docs/api", {
+	const res = await fetch(`${SSE_URL}/investor/listing-docs/api`, {
 		method: "post",
 	});
 	return await res.json();
 }
 
 async function getCorporateGovernanceData() {
-	const res = await fetch(
-		"http://localhost:3000/investor/corporate-governance/api",
-		{ method: "post" },
-	);
+	const res = await fetch(`${SSE_URL}/investor/corporate-governance/api`, {
+		method: "post",
+	});
 	return await res.json();
 }
 
 async function getAnnouncementsNoticesData() {
-	const res = await fetch(
-		"http://localhost:3000/investor/announcements-notices/api",
-		{ method: "post" },
-	);
+	const res = await fetch(`${SSE_URL}/investor/announcements-notices/api`, {
+		method: "post",
+	});
 	return await res.json();
 }
 

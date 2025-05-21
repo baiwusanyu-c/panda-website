@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { BASE_URL, genHeaders } from "@/utils";
-
+import { getLocale } from "next-intl/server";
 /**
  * ResFranchiseListDto
  */
@@ -54,13 +54,14 @@ export interface ResFranchiseDto {
 }
 
 export async function POST() {
+	const locale = (await getLocale()) as "en" | "zh";
 	const res = await fetch(`${BASE_URL}/franchise/process-list`, {
 		method: "post",
 		body: JSON.stringify({
 			pageSize: "100",
 			pageNum: "1",
 		}),
-		headers: genHeaders(),
+		headers: genHeaders(undefined, locale),
 	});
 	const data = (await res.json()).data.records.sort(
 		(a: ResFranchiseDto, b: ResFranchiseDto) => {

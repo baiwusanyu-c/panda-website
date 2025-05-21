@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { AddressItem, ContactInfo } from "@/app/contact/api/route";
 import type { ResNewsDto, ResNewsListDto } from "@/app/news/api/route";
-
+import { SSE_URL } from "@/utils";
 export interface HomeInfo {
 	intro: string;
 	headquarter: AddressItem;
@@ -10,14 +10,14 @@ export interface HomeInfo {
 }
 
 async function getContactData() {
-	const res = await fetch("http://localhost:3000/contact/api", {
+	const res = await fetch(`${SSE_URL}/contact/api`, {
 		method: "post",
 	});
 	return await res.json();
 }
 
 async function getNewsData() {
-	const res = await fetch("http://localhost:3000/news/api", { method: "post" });
+	const res = await fetch(`${SSE_URL}/news/api`, { method: "post" });
 	return await res.json();
 }
 
