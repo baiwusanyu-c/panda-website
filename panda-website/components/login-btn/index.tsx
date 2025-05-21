@@ -7,10 +7,13 @@ import { Input } from "@heroui/input";
 import Image from "next/image";
 import { BASE_URL, genHeaders } from "@/utils";
 import { useMount } from "ahooks";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { notification } from "antd";
 
 const cache = globalThis.localStorage;
 export function LoginBtn() {
+	const [api, contextHolder] = notification.useNotification();
+	const t = useTranslations("login");
 	const [showLoginModal, setShowLoginModal] = useState(false);
 	const lang = useLocale() as "en" | "zh";
 	const onShowLoginModal = () => {
@@ -19,15 +22,6 @@ export function LoginBtn() {
 			setStatus(true);
 		}
 		setShowLoginModal(v);
-		// addToast({
-		// 	title: "通知",
-		// 	description: 'data.data.message',
-		// 	color: 'success',
-		// 	timeout: 999999,
-		// 	classNames: {
-		// 		base: 'top-[60px] bg-cbd-red-1',
-		// 	}
-		// })
 	};
 	const [isLogin, setIsLogin] = useState<boolean>(false);
 	useMount(() => {
@@ -42,7 +36,7 @@ export function LoginBtn() {
 			body: JSON.stringify(data),
 			headers: genHeaders(undefined, lang),
 		});
-		// TODO 提示消息
+
 		if (res.status === 200) {
 			const data = await res.json();
 			if (`${data.code}` === "200") {
@@ -50,12 +44,15 @@ export function LoginBtn() {
 				cache.setItem("token", data.data.token);
 				cache.setItem("user_id", data.data.id);
 				onShowLoginModal();
-				// addToast({
-				// 	title: "通知",
-				// 	description: data.data.message,
-				// 	color: 'success',
-				// })
+				api.success({
+					message: t("info"),
+					description: data.message,
+				});
 			} else {
+				api.error({
+					message: t("info"),
+					description: data.message,
+				});
 			}
 		}
 	};
@@ -72,18 +69,21 @@ export function LoginBtn() {
 			body: JSON.stringify(data),
 			headers: genHeaders(undefined, lang),
 		});
-		// TODO 提示消息
+
 		if (res.status === 200) {
 			const data = await res.json();
 			if (`${data.code}` === "200") {
 				onShowLoginModal();
 				setStatus(true);
-				// addToast({
-				// 	title: "通知",
-				// 	description: data.data.message,
-				// 	color: 'success',
-				// })
+				api.success({
+					message: t("info"),
+					description: data.message,
+				});
 			} else {
+				api.error({
+					message: t("info"),
+					description: data.message,
+				});
 			}
 		}
 	}
@@ -100,7 +100,7 @@ export function LoginBtn() {
 				lang,
 			),
 		});
-		// TODO 提示消息
+
 		if (res.status === 200) {
 			const data = await res.json();
 			if (`${data.code}` === "200") {
@@ -109,17 +109,21 @@ export function LoginBtn() {
 				setIsLogin(false);
 				cache.removeItem("token");
 				cache.removeItem("user_id");
-				// addToast({
-				// 	title: "通知",
-				// 	description: data.data.message,
-				// 	color: 'success',
-				// })
+				api.success({
+					message: t("info"),
+					description: data.message,
+				});
 			} else {
+				api.error({
+					message: t("info"),
+					description: data.message,
+				});
 			}
 		}
 	}
 	return (
 		<>
+			{contextHolder}
 			<div
 				onClick={onShowLoginModal}
 				role="button"
@@ -164,7 +168,7 @@ export function LoginBtn() {
 								/>
 							</div>
 							<p className="pf-regular-22 text-center my-[12px]">
-								欢迎来到 茬白稻
+								{t("title")}
 							</p>
 							{!isLogin ? (
 								<div>
@@ -177,7 +181,7 @@ export function LoginBtn() {
 											<div className="h-[200px] w-full">
 												<Input
 													autoComplete="off"
-													label="用户名"
+													label={t("username")}
 													classNames={{
 														label:
 															"mb-[6px] text-[14px] group-data-[invalid=true]:!text-cbd-red-3",
@@ -189,11 +193,11 @@ export function LoginBtn() {
 														errorMessage: "text-cbd-red-3 mb-[12px]",
 														innerWrapper: "bg-transparent mb-[12px]",
 													}}
-													errorMessage="请输入用户名"
+													errorMessage={t("usernameP")}
 													isRequired
 													labelPlacement="outside"
 													name="account"
-													placeholder="请输入用户名"
+													placeholder={t("usernameP")}
 												/>
 												<Input
 													autoComplete="off"
@@ -202,19 +206,19 @@ export function LoginBtn() {
 														label:
 															"mb-[6px] text-[14px] group-data-[invalid=true]:!text-cbd-red-3",
 														input: [
-															"bg-transparent h-[40px] pl-[6px] bg-cbd-gray-2 rounded-[8px] text-[16px]",
+															"bg-transparent h-[40px] pl-[6px] bg-cbd-gray-2 rounded-[8px] text-[14px]",
 															"group-data-[invalid=true]:!bg-cbd-red-1",
 															"group-data-[invalid=true]:outline-cbd-red-3",
 														],
 														errorMessage: "text-cbd-red-3 mb-[12px]",
 														innerWrapper: "bg-transparent mb-[12px]",
 													}}
-													errorMessage="请输入密码"
+													errorMessage={t("passwordP")}
 													isRequired
-													label="密码"
+													label={t("password")}
 													labelPlacement="outside"
 													name="password"
-													placeholder="请输入密码"
+													placeholder={t("passwordP")}
 												/>
 											</div>
 											<button
@@ -223,7 +227,7 @@ export function LoginBtn() {
                             mt-[40px] cursor-pointer focus:bg-cbd-brand-3 hover:bg-cbd-brand-4
                              w-full h-[40px] rounded-[8px] bg-cbd-brand-5 text-cbd-white text-[14px] leading-[14px]"
 											>
-												登陆
+												{t("login")}
 											</button>
 										</Form>
 									) : (
@@ -235,7 +239,7 @@ export function LoginBtn() {
 											<div className="h-[300px] w-full">
 												<Input
 													autoComplete="off"
-													label="用户名"
+													label={t("username")}
 													classNames={{
 														label:
 															"mb-[6px] text-[14px] group-data-[invalid=true]:!text-cbd-red-3",
@@ -247,15 +251,15 @@ export function LoginBtn() {
 														errorMessage: "text-cbd-red-3 mb-[12px]",
 														innerWrapper: "bg-transparent mb-[12px]",
 													}}
-													errorMessage="请输入用户名"
+													errorMessage={t("usernameP")}
 													isRequired
 													labelPlacement="outside"
 													name="username"
-													placeholder="请输入用户名"
+													placeholder={t("usernameP")}
 												/>
 												<Input
 													autoComplete="off"
-													label="邮箱"
+													label={t("email")}
 													classNames={{
 														label:
 															"mb-[6px] text-[14px] group-data-[invalid=true]:!text-cbd-red-3",
@@ -267,11 +271,11 @@ export function LoginBtn() {
 														errorMessage: "text-cbd-red-3 mb-[12px]",
 														innerWrapper: "bg-transparent mb-[12px]",
 													}}
-													errorMessage="请输入邮箱地址"
+													errorMessage={t("emailP")}
 													isRequired
 													labelPlacement="outside"
 													name="email"
-													placeholder="请输入邮箱地址"
+													placeholder={t("emailP")}
 												/>
 												<Input
 													autoComplete="off"
@@ -280,19 +284,19 @@ export function LoginBtn() {
 														label:
 															"mb-[6px] text-[14px] group-data-[invalid=true]:!text-cbd-red-3",
 														input: [
-															"bg-transparent h-[40px] pl-[6px] bg-cbd-gray-2 rounded-[8px] text-[16px]",
+															"bg-transparent h-[40px] pl-[6px] bg-cbd-gray-2 rounded-[8px] text-[14px]",
 															"group-data-[invalid=true]:!bg-cbd-red-1",
 															"group-data-[invalid=true]:outline-cbd-red-3",
 														],
 														errorMessage: "text-cbd-red-3 mb-[12px]",
 														innerWrapper: "bg-transparent mb-[12px]",
 													}}
-													errorMessage="请输入密码"
+													errorMessage={t("passwordP")}
 													isRequired
-													label="密码"
+													label={t("password")}
 													labelPlacement="outside"
 													name="password"
-													placeholder="请输入密码"
+													placeholder={t("passwordP")}
 												/>
 											</div>
 											<button
@@ -301,25 +305,25 @@ export function LoginBtn() {
                             mt-[40px] cursor-pointer focus:bg-cbd-brand-3 hover:bg-cbd-brand-4
                              w-full h-[40px] rounded-[8px] bg-cbd-brand-5 text-cbd-white text-[14px] leading-[14px]"
 											>
-												注册
+												{t("register")}
 											</button>
 										</Form>
 									)}
 									<p className="text-center w-full text-cbd-gray-6 pf-regular-14 my-[20px]">
-										{status ? "没有账户？" : ""}
+										{status ? t("registerText") : ""}
 										<span
 											role="button"
 											className="cursor-pointer text-cbd-brand-5 hover:text-cbd-brand-4"
 											onClick={doRegister}
 										>
-											{status ? "去注册" : "去登陆"}
+											{status ? t("goRegister") : t("goLogin")}
 										</span>
 									</p>
 								</div>
 							) : (
 								<div className="w-full px-[24px] fcc flex-col">
 									<div className="text-[26px] mt-[30px] text-cbd-gray-6">
-										是否退出当前账号？
+										{t("logoutText")}
 									</div>
 									<button
 										onClick={doLogout}
@@ -327,7 +331,7 @@ export function LoginBtn() {
                             my-[40px] cursor-pointer focus:bg-cbd-brand-3 hover:bg-cbd-brand-4
                              w-full h-[40px] rounded-[8px] bg-cbd-brand-5 text-cbd-white text-[14px] leading-[14px]"
 									>
-										登出
+										{t("logout")}
 									</button>
 								</div>
 							)}

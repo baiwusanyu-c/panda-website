@@ -15,13 +15,16 @@
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@ant-design/icons": "^6.0.0",
+    "@ant-design/nextjs-registry": "^1.0.2",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@chapanda/style-preset": "^1.4.9",
+    "@heroui/button": "^2.2.19",
+    "@heroui/form": "^2.1.18.",
+    "@heroui/input": "^2.4.19",
+    "@heroui/toast": "^2.0.9",
     "@heroui/tooltip": "^2.2.16",
-    "@heroui/button": "latest",
-    "@heroui/form": "latest",
-    "@heroui/input": "latest",
-    "@heroui/toast": "latest",
     "ahooks": "^3.8.4",
+    "antd": "^5.25.2",
     "dayjs": "^1.11.12",
     "motion": "^12.7.4",
     "next": "^15.3.1",
@@ -31,6 +34,7 @@
     "swiper": "^11.2.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/node": "^22.14.1",
     "@types/react": "^19.1.2",
@@ -41,10 +45,9 @@
     "eslint-config-next": "15.0.3",
     "postcss": "^8.5.3",
     "postcss-px-to-viewport": "^1.1.1",
+    "simple-git-hooks": "^2.8.1",
     "tailwindcss": "^4.1.4",
-    "typescript": "^5.8.3",
-    "@biomejs/biome": "1.8.3",
-    "simple-git-hooks": "^2.8.1"
+    "typescript": "^5.8.3"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

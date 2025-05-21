@@ -34,7 +34,6 @@ export async function POST() {
 		headers: genHeaders(undefined, locale),
 	});
 	const headquarter = (await headquarterRes.json()).data.records[0] || {};
-	const locale = (await getLocale()) as "en" | "zh";
 	const res = await fetch(`${BASE_URL}/operation-center/list`, {
 		method: "post",
 		body: JSON.stringify({

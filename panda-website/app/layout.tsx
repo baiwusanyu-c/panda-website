@@ -7,6 +7,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { SSE_URL } from "@/utils";
 import { LoginBtn } from "@/components/login-btn";
 import { ToastProvider } from "@heroui/toast";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import "@ant-design/v5-patch-for-react-19";
 
 const oppoSans = localFont({
 	src: "./fonts/fangzx.ttf",
@@ -31,10 +33,12 @@ export default async function RootLayout({
 				style={{ fontFamily: "var(--oppp-sans)" }}
 			>
 				<NextIntlClientProvider>
-					<ToastProvider />
-					<PandaNav list={res.data.links}></PandaNav>
-					{children}
-					<LoginBtn />
+					<AntdRegistry>
+						<ToastProvider />
+						<PandaNav list={res.data.links}></PandaNav>
+						{children}
+						<LoginBtn />
+					</AntdRegistry>
 				</NextIntlClientProvider>
 			</body>
 		</html>

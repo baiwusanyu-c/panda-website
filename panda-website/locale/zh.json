@@ -87,5 +87,22 @@
     "advantage6": "专业化产品",
     "tel": "加盟电话",
     "callTime": "接听时段"
+  },
+  "login": {
+    "info": "通知",
+    "title": "欢迎来到 茬白稻",
+    "username": "用户名",
+    "usernameP": "请输入用户名",
+    "password": "密码",
+    "passwordP": "请输入密码",
+    "email": "邮箱",
+    "emailP": "请输入邮箱地址",
+    "login": "登陆",
+    "goLogin": "去登陆",
+    "register": "注册",
+    "goRegister": "去注册",
+    "registerText": "没有账户？",
+    "logout": "登出",
+    "logoutText": "是否退出当前账号？"
   }
 }

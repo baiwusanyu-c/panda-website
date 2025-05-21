@@ -87,5 +87,22 @@
     "advantage6": "Specialized product",
     "tel": "Join us at",
     "callTime": "Call time"
+  },
+  "login": {
+    "info": "Notification",
+    "title": "Welcome to PandaTea",
+    "username": "Username",
+    "usernameP": "Please enter a username",
+    "password": "Password",
+    "passwordP": "Please enter your password",
+    "email": "Email",
+    "emailP": "Please enter a email",
+    "login": "Login",
+    "goLogin": "Go Login !",
+    "register": "Sign up",
+    "goRegister": "Go to Sign up",
+    "registerText": "Don't have an account? ",
+    "logout": "Logout",
+    "logoutText": "Whether to log out of the current account ？"
   }
 }
