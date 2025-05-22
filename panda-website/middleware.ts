@@ -9,15 +9,16 @@ export async function middleware(request: NextRequest) {
   if (pathname.startsWith('/investor/listing-docs/api')) {
     return NextResponse.next()
   }
+  const lang = (request.headers.get('x-custom-lang') || 'ev') as 'en' | 'zh'
   // 检测是否包含 token
   const token = request.cookies.get('token')?.value
   const id = request.cookies.get('user_id')?.value
+
   if (!token) {
-    return NextResponse.redirect(new URL('/home', request.url))
+    return NextResponse.redirect(genErrorsURL('Empty token request, please login again', request.url))
   }
 
   // 调取后端权限接口，
-  const lang = (request.headers.get('x-custom-lang') || 'ev') as 'en' | 'zh'
   const res = await fetch(`${BASE_URL}/user/getUser`, {
     method: "post",
     body: JSON.stringify({ id }),
@@ -26,7 +27,7 @@ export async function middleware(request: NextRequest) {
 
   const userInfoData = (await res.json());
   if(userInfoData.code !== 200) {
-    return NextResponse.redirect(new URL('/home', request.url))
+    return NextResponse.redirect(genErrorsURL(userInfoData.message, request.url))
   }
   const { data: userInfo } = userInfoData
   // TODO 校验 页面权限列表
@@ -45,4 +46,10 @@ export const config = {
     '/investor/listing-docs/:path*',
     '/pdf-upload/:path*',
   ],
+}
+
+function genErrorsURL(message: string, url: string) {
+  const urlInstance = new URL('/error', url);
+  urlInstance.searchParams.set('message', message)
+  return urlInstance
 }
