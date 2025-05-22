@@ -24,19 +24,16 @@ importers:
         specifier: ^1.4.9
         version: 1.4.9(@ant-design/colors@8.0.0)(antd@5.25.2(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(baiwusanyu-utils@1.0.18(ansi-colors@4.1.3)(moment@2.30.1))(element-plus@2.8.8(vue@3.5.13(typescript@5.8.3)))(tailwindcss@4.1.4)(unocss@0.62.4(postcss@8.5.3)(rollup@4.27.3)(vite@5.4.11(@types/node@22.14.1)(lightningcss@1.29.2)))(vant@4.9.9(vue@3.5.13(typescript@5.8.3)))
       '@heroui/button':
-        specifier: latest
+        specifier: ^2.2.19
         version: 2.2.19(@heroui/system@2.4.15(@heroui/theme@2.4.15(tailwindcss@4.1.4))(framer-motion@12.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.15(tailwindcss@4.1.4))(framer-motion@12.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@heroui/form':
-        specifier: latest
+        specifier: ^2.1.18
         version: 2.1.18(@heroui/system@2.4.15(@heroui/theme@2.4.15(tailwindcss@4.1.4))(framer-motion@12.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.15(tailwindcss@4.1.4))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@heroui/input':
-        specifier: latest
+        specifier: ^2.4.19
         version: 2.4.19(@heroui/system@2.4.15(@heroui/theme@2.4.15(tailwindcss@4.1.4))(framer-motion@12.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.15(tailwindcss@4.1.4))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@heroui/theme':
-        specifier: latest
-        version: 2.4.15(tailwindcss@4.1.4)
       '@heroui/toast':
-        specifier: latest
+        specifier: ^2.0.9
         version: 2.0.9(@heroui/system@2.4.15(@heroui/theme@2.4.15(tailwindcss@4.1.4))(framer-motion@12.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.15(tailwindcss@4.1.4))(framer-motion@12.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@heroui/tooltip':
         specifier: ^2.2.16
@@ -50,6 +47,9 @@ importers:
       dayjs:
         specifier: ^1.11.12
         version: 1.11.13
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
       motion:
         specifier: ^12.7.4
         version: 12.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -75,6 +75,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.1.4
         version: 4.1.4
+      '@types/js-cookie':
+        specifier: latest
+        version: 3.0.6
       '@types/node':
         specifier: ^22.14.1
         version: 22.14.1
@@ -85,7 +88,7 @@ importers:
         specifier: ^19.1.2
         version: 19.1.2(@types/react@19.1.2)
       '@types/swiper':
-        specifier: latest
+        specifier: ^6.0.0
         version: 6.0.0
       autoprefixer:
         specifier: ^10.4.21
@@ -1563,6 +1566,9 @@ packages:
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
+
+  '@types/js-cookie@3.0.6':
+    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -5058,6 +5064,8 @@ snapshots:
       tailwindcss: 4.1.4
 
   '@types/estree@1.0.6': {}
+
+  '@types/js-cookie@3.0.6': {}
 
   '@types/json-schema@7.0.15': {}
 

@@ -9,6 +9,7 @@ import { BASE_URL, genHeaders } from "@/utils";
 import { useMount } from "ahooks";
 import { useLocale, useTranslations } from "next-intl";
 import { notification } from "antd";
+import { setCookies, delCookies } from "@/utils/cookies";
 
 const cache = globalThis.localStorage;
 export function LoginBtn() {
@@ -43,6 +44,8 @@ export function LoginBtn() {
 				setIsLogin(true);
 				cache.setItem("token", data.data.token);
 				cache.setItem("user_id", data.data.id);
+				setCookies("token", data.data.token);
+				setCookies("user_id", data.data.id);
 				onShowLoginModal();
 				api.success({
 					message: t("info"),
@@ -108,7 +111,9 @@ export function LoginBtn() {
 				setStatus(true);
 				setIsLogin(false);
 				cache.removeItem("token");
+				delCookies("token");
 				cache.removeItem("user_id");
+				delCookies("user_id");
 				api.success({
 					message: t("info"),
 					description: data.message,
