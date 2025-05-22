@@ -19,22 +19,21 @@ export async function middleware(request: NextRequest) {
   }
 
   // 调取后端权限接口，
-  const res = await fetch(`${BASE_URL}/user/getUser`, {
+  const res = await fetch(`${BASE_URL}/permission/user-menu-permission`, {
     method: "post",
-    body: JSON.stringify({ id }),
+    body: JSON.stringify({ id, menuPath: pathname }),
     headers: genHeaders({ token }, lang),
   });
 
-  const userInfoData = (await res.json());
-  if(userInfoData.code !== 200) {
-    return NextResponse.redirect(genErrorsURL(userInfoData.message, request.url))
+  const permissionData = (await res.json());
+  if(permissionData.code !== 200) {
+    return NextResponse.redirect(genErrorsURL(permissionData.message, request.url))
   }
-  const { data: userInfo } = userInfoData
-  // TODO 校验 页面权限列表
-  if(userInfo.permissions && userInfo.permissions.length > 0) {
-
+  const { data: permissionInfo } = permissionData
+  // 校验页面权限列表
+  if(!permissionInfo.hasPermission) {
+    return NextResponse.redirect(genErrorsURL(permissionData.message, request.url))
   }
-
 
   return  NextResponse.next()
 
