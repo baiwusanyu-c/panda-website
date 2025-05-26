@@ -3,20 +3,24 @@ import { Form, Input, Button, Select, Upload	 } from 'antd'
 import "@ant-design/v5-patch-for-react-19";
 import { InboxOutlined } from "@ant-design/icons";
 import { SSE_URL} from "@/utils";
+import { notification } from "antd";
 // biome-ignore lint/style/useImportType: <explanation>
 import { RcFile } from "antd/es/upload/interface";
+import {useTranslations} from "next-intl";
 type FieldType = {
 	fileName: string;
 	fileNameEn: string;
 	description?: string;
 	descriptionEn?: string;
-	category: '1' | '2' | '3' | '4' | '5' | '6',
+	category: '1' | '2' | '3' | '4' | '5' | '6' | '7',
 	fileList: {
 		file: RcFile
 	}
 };
 
 export default function PdfUpload(){
+	const [api, contextHolder] = notification.useNotification();
+	const t = useTranslations("login");
 	const { Dragger } = Upload;
 	const uploadProps = {
 		fileList: [],
@@ -38,14 +42,22 @@ export default function PdfUpload(){
 				const uploadUrlRes = (await res.json()).data
 				const file = values.fileList.file
 				if(uploadUrlRes.code === 200){
-					fetch(uploadUrlRes.data.uploadUrl, {
+					const res = await fetch(uploadUrlRes.data.uploadUrl, {
 						method: 'PUT',
 						body: file
 					})
+					if(res.status === 200){
+						form.resetFields()
+						api.success({
+							message: t("info"),
+							description: '上传成功',
+						});
+					}
 				}
 		})
 	}
 	return <div className="h-[800px] fcc">
+		{contextHolder}
 		<Form
 			form={form}
 			name="basic"
@@ -103,7 +115,7 @@ export default function PdfUpload(){
 			</Form.Item>
 
 			<Form.Item<FieldType>
-				label="文件文件类型"
+				label="文件类型"
 				name="category"
 				rules={[{ required: true, message: '请选择文件类型' }]}
 			>
@@ -114,6 +126,7 @@ export default function PdfUpload(){
 					{ value: '4', label: '委任代表表格' },
 					{ value: '5', label: '业绩报告' },
 					{ value: '6', label: '其他' },
+					{ value: '7', label: '招股文件' },
 				]}>
 
 				</Select>

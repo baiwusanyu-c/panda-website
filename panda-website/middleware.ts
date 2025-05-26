@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
   }
   const lang = (request.headers.get('x-custom-lang') || 'ev') as 'en' | 'zh'
   // 检测是否包含 token
-  const token = request.cookies.get('token')?.value
+  const token = request.cookies.get('panda_tea_token')?.value
   const id = request.cookies.get('user_id')?.value
 
   if (!token) {

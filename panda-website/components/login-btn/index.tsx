@@ -44,7 +44,7 @@ export function LoginBtn() {
 				setIsLogin(true);
 				cache.setItem("token", data.data.token);
 				cache.setItem("user_id", data.data.id);
-				setCookies("token", data.data.token);
+				setCookies("panda_tea_token", data.data.token);
 				setCookies("user_id", data.data.id);
 				onShowLoginModal();
 				api.success({
@@ -126,7 +126,7 @@ export function LoginBtn() {
 		setStatus(true);
 		setIsLogin(false);
 		cache.removeItem("token");
-		delCookies("token");
+		delCookies("panda_tea_token");
 		cache.removeItem("user_id");
 		delCookies("user_id");
 	}

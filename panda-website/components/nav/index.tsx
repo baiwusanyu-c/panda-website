@@ -15,16 +15,15 @@ export interface PandaNavProps {
 }
 
 export default function PandaNav(props: PandaNavProps) {
-	const { list } = props;
 	const t = useTranslations("common");
-	const [linkList, setLinkList] = useState<MenuItem[]>(list);
+	const [linkList, setLinkList] = useState<MenuItem[]>(props.list.filter(v => v.show));
 	const [width, setWidth] = useState(globalThis.innerWidth);
 
 	const handleResize = (init = false) => {
 		const browserWidth = globalThis.innerWidth;
 		const isSmaller = browserWidth <= width;
 		setWidth(browserWidth);
-		const updatedLinks = JSON.parse(JSON.stringify(props.list));
+		const updatedLinks = JSON.parse(JSON.stringify(props.list.filter(v => v.show)));
 		const curLinks = JSON.parse(JSON.stringify(linkList));
 		const curLength = curLinks.length;
 
@@ -38,7 +37,7 @@ export default function PandaNav(props: PandaNavProps) {
 				name: "更多",
 				nameEn: "more",
 				path: "/more-page",
-				show:true,
+				show: true,
 				children: removedLinks,
 			});
 		};
@@ -197,7 +196,7 @@ export default function PandaNav(props: PandaNavProps) {
 				/>
 			</div>
 			<div className="h-full w-auto fcc">
-				{(linkList || []).filter((u) => u.show).map((url) => (
+				{(linkList || []).map((url) => (
 					<NavItem links={url.children} key={url.id} url={url.path}>
 						<Link
 							onClick={(e) => {

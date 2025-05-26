@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 		body: JSON.stringify(params),
 		headers: genHeaders(
 			{
-				token: await getCookies('token') || "",
+				token: await getCookies('panda_tea_token') || "",
 			}, locale),
 	});
 	const data = (await res.json());

@@ -87,7 +87,7 @@ export function NavItem(props: NavItemProps) {
 						className="pf bg-cbd-brand-5 h-[55px]  max-w-max py-0 px-[55px] fcc"
 						style={pos}
 					>
-						{(props.links || []).filter((u) => u.show).map((url) => {
+						{(props.links || []).map((url) => {
 							return !url.children || url.children.length === 0 ? (
 								<Link
 									className="text-[16px] text-cbd-white hover:text-cbd-yellow-2 mx-[20px]"
