@@ -3,13 +3,14 @@ export function genHeaders(
 	lang?: "en" | "zh",
 ) {
 	const headers = new Headers();
-	if (header) {
-		Object.keys(header).forEach((key) => {
-			headers.append(key, header[key]);
-		});
+	const headerRecord: Record<string, string> = {
+		"x-custom-lang": lang || "en",
+	  "Content-Type":"application/json",
+		"Connection": "keep-alive",
+		...header,
 	}
-	headers.append("x-custom-lang", lang || "en");
-	headers.append("Content-Type", "application/json");
-	headers.append("Connection", "keep-alive");
+	Object.keys(headerRecord).forEach((key) => {
+		headers.append(key, headerRecord[key]);
+	});
 	return headers;
 }

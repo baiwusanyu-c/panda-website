@@ -9,6 +9,9 @@ export async function middleware(request: NextRequest) {
   if (pathname.startsWith('/investor/listing-docs/api')) {
     return NextResponse.next()
   }
+  if (pathname.startsWith('/pdf-upload/api')) {
+    return NextResponse.next()
+  }
   const lang = (request.headers.get('x-custom-lang') || 'ev') as 'en' | 'zh'
   // 检测是否包含 token
   const token = request.cookies.get('token')?.value

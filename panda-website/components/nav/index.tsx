@@ -38,6 +38,7 @@ export default function PandaNav(props: PandaNavProps) {
 				name: "更多",
 				nameEn: "more",
 				path: "/more-page",
+				show:true,
 				children: removedLinks,
 			});
 		};
