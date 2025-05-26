@@ -196,7 +196,7 @@ export default function PandaNav(props: PandaNavProps) {
 				/>
 			</div>
 			<div className="h-full w-auto fcc">
-				{(linkList || []).map((url) => (
+				{(linkList || []).filter((u) => u.show).map((url) => (
 					<NavItem links={url.children} key={url.id} url={url.path}>
 						<Link
 							onClick={(e) => {

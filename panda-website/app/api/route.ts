@@ -6,6 +6,7 @@ export interface MenuItem {
 	nameEn: string;
 	icon?: string;
 	path: string;
+	show: boolean;
 	parentId?: string;
 	children?: MenuItem[];
 	id: string;

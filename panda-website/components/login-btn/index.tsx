@@ -108,12 +108,6 @@ export function LoginBtn() {
 			const data = await res.json();
 			if (`${data.code}` === "200") {
 				onShowLoginModal();
-				setStatus(true);
-				setIsLogin(false);
-				cache.removeItem("token");
-				delCookies("token");
-				cache.removeItem("user_id");
-				delCookies("user_id");
 				api.success({
 					message: t("info"),
 					description: data.message,
@@ -124,7 +118,17 @@ export function LoginBtn() {
 					description: data.message,
 				});
 			}
+			resetStatus()
 		}
+	}
+
+	function resetStatus(){
+		setStatus(true);
+		setIsLogin(false);
+		cache.removeItem("token");
+		delCookies("token");
+		cache.removeItem("user_id");
+		delCookies("user_id");
 	}
 	return (
 		<>
