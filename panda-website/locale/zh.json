@@ -104,5 +104,28 @@
     "registerText": "没有账户？",
     "logout": "登出",
     "logoutText": "是否退出当前账号？"
+  },
+  "investor": {
+    "title": "欢迎来到茬白稻投资者关系",
+    "description1": "我们为消费者，特别是注重茶饮品质的年轻一代，提供各种现制茶饮。我们对产品质量和产品开发的努力使茶百道成为行业中的头部参与者，拥有广泛的消费群体。",
+    "subDescription1": "“三用心”经营理念",
+    "subDescription2": "对产品用心、对消费者用心、对加盟商用心",
+    "description": "自成立以来，茬白稻专注探索天然食材与中式茶饮的搭配，持续研发多元化茶饮产品，致力于提升消费者体验。我们通过互惠互利的加盟模式，现已经发展成为全国知名的现制茶饮企业。",
+    "more": "了解更多",
+    "announcements": "公告及公函",
+    "listingdocs": "招股文件",
+    "reports": "业绩报告",
+    "corporate": "企业管治",
+    "governance": "治理文件",
+    "members1": "执行董事",
+    "members2": "非执行董事",
+    "members3": "独立非执行董事",
+    "members4": "审核委员会",
+    "members5": "薪酬委员会",
+    "members6": "提名委员会",
+    "name1": "王xx先生",
+    "name2": "汪xx先生",
+    "name3": "戴xx士",
+    "name4": "陈xx先生"
   }
 }

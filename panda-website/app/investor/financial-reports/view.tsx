@@ -6,6 +6,7 @@ import Image from "next/image";
 import type { FinancialReportsInfo } from "@/app/investor/financial-reports/api/route";
 import { UpCircleOutlined, DownCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import {useTranslations} from "next-intl";
 
 export default function FinancialReportsView(props: {
 	list: FinancialReportsInfo["list"];
@@ -22,7 +23,7 @@ export default function FinancialReportsView(props: {
 	}
 
 	const [isHover, setHover] = useState<boolean>(false);
-
+	const t = useTranslations("investor");
 	return (
 		<div className="panda-tea-about overflow-x-hidden bg-cbd-white w-full">
 			<motion.div
@@ -36,7 +37,7 @@ export default function FinancialReportsView(props: {
 					variants={genVariant(0)}
 					className="text-[32px] text-cbd-gray-6 fcc flex-col"
 				>
-					业绩报告
+					{t('reports')}
 					<p className="w-[80px] h-[6px] rounded-2xl bg-cbd-brand-5 mt-[20px]"></p>
 				</motion.div>
 				<div className="fsc h-[570px] mx-auto -0 max-w-[1500px] min-w-[1200px] w-[94%] my-[120px]">

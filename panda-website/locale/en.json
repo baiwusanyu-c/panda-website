@@ -104,5 +104,28 @@
     "registerText": "Don't have an account? ",
     "logout": "Logout",
     "logoutText": "Whether to log out of the current account ？"
+  },
+  "investor": {
+    "title": "Welcome to PandaTea Investor Relations",
+    "description1": "We provide a wide selection of fruit tea drinks to consumers, especially the young generations who value quality tea drinks. Our dedication to product quality and product development has allowed PandaTea to become a leading player in the industry with a broad base of consumers.",
+    "subDescription1": "Our corporate culture",
+    "subDescription2": "Unwavering dedication to product offering, consumer service and franchisee empowerment",
+    "description": "Since establishment, we have been dedicated to exploring combinations of natural ingredients with Chinese tea. We have been continuously developing diversified tea drink products and focusing on enhancing consumer experience. Through a franchise model that benefits our franchisees and ourselves, we have grown to be an established freshly-made tea drink company in China.",
+    "more": "More",
+    "announcements": "Announcements & Notices",
+    "listingdocs": "Listing Documents",
+    "reports": "Financial Reports",
+    "corporate": "Corporate Governance",
+    "governance": "Governance Documents",
+    "members1": "Executive Directors",
+    "members2": "Non-executive Director",
+    "members3": "Independent Non-executive Directors",
+    "members4": "Audit Committee",
+    "members5": "Remuneration Committee",
+    "members6": "Nomination Committee",
+    "name1": "Mr. Wang xxxxkun",
+    "name2": "Mr. Wang xxkun",
+    "name3": "Ms. Dai xx",
+    "name4": "Mr. Chen xx"
   }
 }

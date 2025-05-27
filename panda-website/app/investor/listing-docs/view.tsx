@@ -4,11 +4,13 @@ import { motion } from "motion/react";
 import { genVariant } from "@/utils";
 import Image from "next/image";
 import type { ListingDocsInfo } from "@/app/investor/listing-docs/api/route";
+import {useTranslations} from "next-intl";
 interface ListingDocsView {
 	links: ListingDocsInfo;
 }
 export default function ListingDocsView(props: ListingDocsView) {
 	const links = props.links;
+	const t = useTranslations("investor");
 	return (
 		<div className="panda-tea-about overflow-x-hidden bg-cbd-white w-full">
 			<motion.div
@@ -22,7 +24,7 @@ export default function ListingDocsView(props: ListingDocsView) {
 					variants={genVariant(0)}
 					className="text-[32px] text-cbd-gray-6 fcc flex-col"
 				>
-					招股文件
+					{t('listingdocs')}
 					<p className="w-[80px] h-[6px] rounded-2xl bg-cbd-brand-5 mt-[20px]"></p>
 				</motion.div>
 				{links.map((linkItem) => {
