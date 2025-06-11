@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
 import type { CorporateGovernanceResInfo } from "@/app/investor/corporate-governance/api/route";
 import type { ListingDocsInfo } from "@/app/investor/listing-docs/api/route";
-import type { AnnouncementsNoticesResInfo } from "@/app/investor/announcements-notices/api/route";
 import { SSE_URL } from "@/utils";
+export interface AnnouncementsNoticesResInfo {
+	records: Array<{
+		link: string;
+		date?: string;
+		title: string;
+		subTitle?: string;
+	}>;
+}
 export interface InvestorResInfo {
 	description: string;
 	listingDocsList: ListingDocsInfo;

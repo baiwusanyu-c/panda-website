@@ -125,6 +125,7 @@ export default function PandaNav(props: PandaNavProps) {
 	// biome-ignore lint/correctness/useExhaustiveDependencies(handleResize): <explanation>
 	useEffect(() => {
 		handleResize(true);
+		//  eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const pathname = usePathname();

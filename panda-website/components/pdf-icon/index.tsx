@@ -1,6 +1,7 @@
 import React from "react";
 
 interface PdfIconProps {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	style?: Record<string, any>;
 	className?: string;
 }
