@@ -1,6 +1,6 @@
 "use client";
 
-import type { ContactInfo } from "@/app/contact/api/route";
+import type { ContactInfo } from "@/request";
 import { motion } from "motion/react";
 import { genVariant } from "@/utils";
 import {

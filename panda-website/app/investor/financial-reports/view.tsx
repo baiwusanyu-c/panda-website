@@ -3,10 +3,10 @@
 import { motion } from "motion/react";
 import { genVariant } from "@/utils";
 import Image from "next/image";
-import type { FinancialReportsInfo } from "@/app/investor/financial-reports/api/route";
+import type { FinancialReportsInfo } from "@/request";
 import { UpCircleOutlined, DownCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import {useTranslations} from "next-intl";
+import { useTranslations } from "next-intl";
 
 export default function FinancialReportsView(props: {
 	list: FinancialReportsInfo["list"];
@@ -37,7 +37,7 @@ export default function FinancialReportsView(props: {
 					variants={genVariant(0)}
 					className="text-[32px] text-cbd-gray-6 fcc flex-col"
 				>
-					{t('reports')}
+					{t("reports")}
 					<p className="w-[80px] h-[6px] rounded-2xl bg-cbd-brand-5 mt-[20px]"></p>
 				</motion.div>
 				<div className="fsc h-[570px] mx-auto -0 max-w-[1500px] min-w-[1200px] w-[94%] my-[120px]">

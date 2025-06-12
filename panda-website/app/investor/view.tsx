@@ -4,10 +4,10 @@ import { motion } from "motion/react";
 import { genVariant } from "@/utils";
 import "./style.css";
 
-import type { InvestorResInfo } from "@/app/investor/api/route";
+import type { InvestorResInfo } from "@/request";
 import Image from "next/image";
 import { PdfCard } from "@/components/pdf-card";
-import {useLocale, useTranslations} from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 export interface InvestorProps {
 	data: InvestorResInfo;
 }
@@ -26,20 +26,20 @@ export default function InvestorView(props: InvestorProps) {
 				<div className="max-w-[1500px] min-w-[1200px] overflow-hidden mt-[60px] mx-auto w-[94%] pb-[80px]">
 					<p className="text-[32px] text-cbd-gray-6 font-bold">
 						{" "}
-						{t('title')}{" "}
+						{t("title")}{" "}
 					</p>
 					<p className="w-[80px] h-[6px] rounded-2xl bg-cbd-brand-5 mt-[20px]"></p>
 					<motion.div variants={genVariant(0.2)} className="fbc">
 						<div className="fss flex-col mr-[100px]">
 							<p className="text-[16px] text-cbd-gray-5 font-normal my-[40px]">
-								{t('description')}
+								{t("description")}
 							</p>
 							<div className="rounded-full font-normal text-[16px] w-full bg-cbd-gray-2 leading-[40px] h-[40px]">
 								<span className="rounded-full py-[10px] bg-cbd-brand-5 px-[20px] text-cbd-white">
-									{t('subDescription1')}
+									{t("subDescription1")}
 								</span>
 								<span className="py-[10px]  px-[20px]">
-									{t('subDescription2')}
+									{t("subDescription2")}
 								</span>
 							</div>
 						</div>
@@ -65,11 +65,13 @@ export default function InvestorView(props: InvestorProps) {
 							rel="noreferrer"
 						>
 							{" "}
-							{t('corporate')}{" "}
+							{t("corporate")}{" "}
 						</a>
 						<p className="w-[80px] h-[6px] rounded-2xl bg-cbd-white mt-[20px]"></p>
-						<p className={`${lang === 'zh' ? 'leading-[32px]' : 'leading-[26px]'} w-[60%] mt-[30px]`}>
-							{t('description1')}
+						<p
+							className={`${lang === "zh" ? "leading-[32px]" : "leading-[26px]"} w-[60%] mt-[30px]`}
+						>
+							{t("description1")}
 						</p>
 						<a
 							href="/investor/corporate-governance"
@@ -77,7 +79,7 @@ export default function InvestorView(props: InvestorProps) {
 							className="mt-[60px] text-center rounded-[40px] block w-[140px] h-[40px] leading-[40px] bg-cbd-brand-5 cursor-pointer"
 							rel="noreferrer"
 						>
-							{t('more')}
+							{t("more")}
 						</a>
 					</div>
 					<div className="investor-right p-[80px] box-border">
@@ -88,7 +90,7 @@ export default function InvestorView(props: InvestorProps) {
 							rel="noreferrer"
 						>
 							{" "}
-							{t('listingdocs')}{" "}
+							{t("listingdocs")}{" "}
 						</a>
 						<p className="w-[80px] h-[6px] rounded-2xl bg-cbd-brand-5 mt-[20px] mb-[30px]"></p>
 						{data.listingDocsList.map((info) => {
@@ -98,7 +100,10 @@ export default function InvestorView(props: InvestorProps) {
 				</motion.div>
 
 				<div className="max-w-[1500px] min-w-[1200px] overflow-hidden mt-[60px] mx-auto w-[94%] pb-[80px]">
-					<p className="text-[32px] text-cbd-gray-6 font-bold"> {t('announcements')} </p>
+					<p className="text-[32px] text-cbd-gray-6 font-bold">
+						{" "}
+						{t("announcements")}{" "}
+					</p>
 					<p className="w-[80px] h-[6px] rounded-2xl bg-cbd-brand-5 mt-[20px]"></p>
 					<motion.div
 						variants={genVariant(0.2)}

@@ -118,11 +118,11 @@ export function LoginBtn() {
 					description: data.message,
 				});
 			}
-			resetStatus()
+			resetStatus();
 		}
 	}
 
-	function resetStatus(){
+	function resetStatus() {
 		setStatus(true);
 		setIsLogin(false);
 		cache.removeItem("token");

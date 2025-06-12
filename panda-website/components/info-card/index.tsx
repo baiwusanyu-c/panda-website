@@ -1,4 +1,4 @@
-import type { ResNewsDto } from "@/app/news/api/route";
+import type { ResNewsDto } from "@/request";
 import { HistoryOutlined } from "@ant-design/icons";
 import { useLocale } from "next-intl";
 import dayjs from "dayjs";

@@ -1,13 +1,7 @@
 import NewsView from "@/app/news/view";
-import type { ResNewsListDto } from "@/app/news/api/route";
-import { SSE_URL } from "@/utils";
+import type { ResNewsListDto } from "@/request";
+import { getNewsPage } from "@/request";
 export default async function NewsPage() {
-	async function getNewsData() {
-		const res = await fetch(`${SSE_URL}/news/api`, {
-			method: "post",
-		});
-		return await res.json();
-	}
-	const newsRes: { data: ResNewsListDto } = await getNewsData();
+	const newsRes: { data: ResNewsListDto } = await getNewsPage();
 	return <NewsView news={newsRes.data.records} />;
 }

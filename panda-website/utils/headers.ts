@@ -5,10 +5,10 @@ export function genHeaders(
 	const headers = new Headers();
 	const headerRecord: Record<string, string> = {
 		"x-custom-lang": lang || "en",
-	  "Content-Type":"application/json",
-		"Connection": "keep-alive",
+		"Content-Type": "application/json",
+		Connection: "keep-alive",
 		...header,
-	}
+	};
 	Object.keys(headerRecord).forEach((key) => {
 		headers.append(key, headerRecord[key]);
 	});

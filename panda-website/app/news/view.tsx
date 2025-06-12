@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { genVariant } from "@/utils";
-import type { ResNewsDto } from "@/app/news/api/route";
+import type { ResNewsDto } from "@/request";
 import { InfoCard } from "@/components/info-card";
 import { useLocale } from "next-intl";
 interface NewsViewProps {

@@ -1,0 +1,6 @@
+export * from './contact'
+export * from './franchise'
+export * from './investor'
+export * from './news'
+export * from './home'
+export * from './menu'

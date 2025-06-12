@@ -1,5 +1,5 @@
 "use client";
-import type { ResFranchiseDto } from "@/app/franchise/api/route";
+import type { ResFranchiseDto } from "@/request";
 import { motion } from "motion/react";
 import { genVariant, genVariantX } from "@/utils";
 import Image from "next/image";

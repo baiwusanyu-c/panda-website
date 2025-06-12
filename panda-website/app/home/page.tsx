@@ -1,15 +1,8 @@
 import HomeView from "@/app/home/view";
-import type { HomeInfo } from "@/app/home/api/route";
-import { SSE_URL } from "@/utils";
+import type { HomeInfo } from "@/request";
+import { getHomePage } from "@/request";
 // TODO: 接口返回
 export default async function HomePage() {
-	async function getHomeData() {
-		const res = await fetch(`${SSE_URL}/home/api`, {
-			method: "post",
-		});
-		const data = await res.json();
-		return data;
-	}
-	const homeRes: { data: HomeInfo } = await getHomeData();
+	const homeRes: { data: HomeInfo } = await getHomePage();
 	return <HomeView data={homeRes.data} />;
 }

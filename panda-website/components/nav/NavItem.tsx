@@ -6,7 +6,7 @@ import Link from "next/link";
 import "./style.css";
 import { usePathname } from "next/navigation";
 import { Tooltip } from "@heroui/tooltip";
-import type { MenuItem } from "@/app/api/route";
+import type { MenuItem } from "@/request";
 import { useLocale } from "next-intl";
 
 export interface NavItemProps {

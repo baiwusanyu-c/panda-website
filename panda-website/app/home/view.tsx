@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { PandaTeaIntroduction } from "@/components/introduction";
-import type { HomeInfo } from "@/app/home/api/route";
+import type { HomeInfo } from "@/request";
 import { motion } from "motion/react";
 import { genVariant, genVariantX } from "@/utils";
 import { Wave } from "@/components/wave";

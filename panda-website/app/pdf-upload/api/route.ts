@@ -9,7 +9,7 @@ export interface CreateShopDto {
 	/**
 	 * 文件分类
 	 */
-	category: '1' | '2' | '3' | '4' | '5' | '6';
+	category: "1" | "2" | "3" | "4" | "5" | "6";
 	/**
 	 * 文件描述
 	 */
@@ -28,7 +28,6 @@ export interface CreateShopDto {
 	fileNameEn: string;
 }
 
-
 export async function POST(request: Request) {
 	const locale = (await getLocale()) as "en" | "zh";
 	// 处理 request payload 类型参数
@@ -39,9 +38,11 @@ export async function POST(request: Request) {
 		body: JSON.stringify(params),
 		headers: genHeaders(
 			{
-				token: await getCookies('panda_tea_token') || "",
-			}, locale),
+				token: (await getCookies("panda_tea_token")) || "",
+			},
+			locale,
+		),
 	});
-	const data = (await res.json());
+	const data = await res.json();
 	return NextResponse.json({ data });
 }

@@ -5,7 +5,7 @@ import { PhoneFilled, GlobalOutlined } from "@ant-design/icons";
 import { NavItem } from "@/components/nav/NavItem";
 import { startTransition, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import type { MenuItem } from "@/app/api/route";
+import type { MenuItem } from "@/request";
 import { useLocale, useTranslations } from "next-intl";
 import { type Locale, setUserLocale } from "@/locale/locale-cookie";
 import { motion, AnimatePresence } from "motion/react";
@@ -16,14 +16,18 @@ export interface PandaNavProps {
 
 export default function PandaNav(props: PandaNavProps) {
 	const t = useTranslations("common");
-	const [linkList, setLinkList] = useState<MenuItem[]>(props.list.filter(v => v.show));
+	const [linkList, setLinkList] = useState<MenuItem[]>(
+		props.list.filter((v) => v.show),
+	);
 	const [width, setWidth] = useState(globalThis.innerWidth);
 
 	const handleResize = (init = false) => {
 		const browserWidth = globalThis.innerWidth;
 		const isSmaller = browserWidth <= width;
 		setWidth(browserWidth);
-		const updatedLinks = JSON.parse(JSON.stringify(props.list.filter(v => v.show)));
+		const updatedLinks = JSON.parse(
+			JSON.stringify(props.list.filter((v) => v.show)),
+		);
 		const curLinks = JSON.parse(JSON.stringify(linkList));
 		const curLength = curLinks.length;
 
