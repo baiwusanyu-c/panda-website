@@ -1,2 +1,2 @@
-export const BASE_URL = "http://localhost:8084";
-export const SSE_URL = "/";
+export const BASE_URL = "https://panda-tea.com.cn/api/";
+export const BFF_URL = "";

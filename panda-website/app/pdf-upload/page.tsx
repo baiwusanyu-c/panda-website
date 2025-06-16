@@ -2,7 +2,7 @@
 import { Form, Input, Button, Select, Upload } from "antd";
 import "@ant-design/v5-patch-for-react-19";
 import { InboxOutlined } from "@ant-design/icons";
-import { SSE_URL } from "@/utils";
+import { BFF_URL } from "@/utils";
 import { notification } from "antd";
 // biome-ignore lint/style/useImportType: <explanation>
 import { RcFile } from "antd/es/upload/interface";
@@ -34,7 +34,7 @@ export default function PdfUpload() {
 	}
 	function onFinish() {
 		form.validateFields().then(async (values: FieldType) => {
-			const res = await fetch(`${SSE_URL}/pdf-upload/api`, {
+			const res = await fetch(`${BFF_URL}/pdf-upload/api`, {
 				method: "post",
 				body: JSON.stringify(values),
 			});
