@@ -4,8 +4,6 @@ WORKDIR /chapanda-website
 
 COPY . .
 
-WORKDIR /chapanda-website-service
-
 RUN npm config set registry https://registry.npmmirror.com/
 
 RUN npm install pnpm --global
