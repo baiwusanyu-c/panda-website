@@ -9,22 +9,17 @@ WORKDIR /chapanda-website
 COPY package.json pnpm-lock.yaml ./
 
 # 设置国内镜像
-RUN npm config set registry https://registry.npmmirror.com/
+FROM docker.1ms.run/library/node:23.0-alpine3.19
 
-# 安装 pnpm 并配置路径
-RUN npm install -g pnpm@latest && \
-    pnpm config set store-dir ~/.pnpm-store && \
-    ln -s /usr/local/lib/node_modules/pnpm/bin/pnpm.cjs /usr/local/bin/pnpm
+WORKDIR /chapanda-website
 
-# 安装项目依赖
-RUN pnpm install --frozen-lockfile
-
-# 复制其他文件
 COPY . .
 
-# 构建应用 (如果需要)
-# RUN pnpm run build
+RUN npm config set registry https://registry.npmmirror.com/
+
+RUN npm install pnpm --global
+
+RUN pnpm install
 
 EXPOSE 3000
-
 CMD ["pnpm", "run", "start"]
