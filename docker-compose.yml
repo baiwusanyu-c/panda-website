@@ -12,4 +12,5 @@ services:
     container_name: chapanda-website
 networks:
   common-network:
-    driver: bridge
+    external: true  # 关键：引用外部网络
+    name: chapanda-website-service_common-network
