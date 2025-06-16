@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  # 前端容器
+  chapanda-website:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - common-network
+    container_name: chapanda-website
+networks:
+  common-network:
+    driver: bridge

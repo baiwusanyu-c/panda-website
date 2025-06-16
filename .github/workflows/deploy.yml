@@ -1,0 +1,75 @@
+name: Deploy to Aliyun
+
+# 仅在推送到 main 分支时触发
+on:
+  push:
+    branches:
+      - main  # 当推送到 main 分支时触发 workflow
+  workflow_dispatch: # 允许手动触发，并可以指定分支
+    inputs:
+      branch:
+        description: 'Branch to release from'
+        required: true
+        default: 'main'  # 默认使用 main 分支
+        type: string
+# 设置执行的工作
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # 安装依赖 pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+      # 安装依赖
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      # 构建项目
+      - name: Build project
+        run: pnpm run build
+      # 与目标服务器建立 ssh 链接
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # 同步源码与产物到目标服务器
+      - name: Rsync deployment files
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --rsync-path="sudo rsync" \
+            ./ $SSH_USER@$SSH_HOST:~/chapanda/front/chapanda-website/
+
+      - name: Set execute permissions
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          ssh $SSH_USER@$SSH_HOST "
+            cd ~/chapanda/front/chapanda-website
+            chmod +x scripts/setup.sh
+          "
+      # 在目标服务器中执行脚本，启动 docker compose
+      - name: Run setup script
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          ssh $SSH_USER@$SSH_HOST "
+            cd ~/chapanda/front/chapanda-website
+            sudo -E bash scripts/setup.sh
+          "
